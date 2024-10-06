@@ -613,7 +613,7 @@
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-193" value="Хранит" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="955" y="960" width="70" height="70" as="geometry" />
         </mxCell>
-        <mxCell id="PvoHj5nDGU-bTcy0h9lv-198" value="Код&lt;div&gt;водителя&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-198" value="Код&lt;div&gt;удостоверения&lt;/div&gt;" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1080" y="800" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-199" value="Код категории" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
