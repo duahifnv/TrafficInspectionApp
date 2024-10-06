@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
   <diagram name="Страница — 1" id="ckJL72oD4UZl0WmPAvJ0">
-    <mxGraphModel dx="1105" dy="558" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1920" math="0" shadow="0">
+    <mxGraphModel dx="750" dy="379" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -66,9 +66,6 @@
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-7" value="Место рождения" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="685" y="955.71" width="80" height="50" as="geometry" />
-        </mxCell>
-        <mxCell id="nbJ6CdIQrGUm-VfRqVgE-8" value="" style="shape=image;verticalLabelPosition=bottom;labelBackgroundColor=default;verticalAlign=top;aspect=fixed;imageAspect=0;image=https://avtoshkola.msk.ru/wp-content/uploads/2022/03/rasshefrovka-prav.jpg;" vertex="1" parent="1">
-          <mxGeometry x="108.85" y="310.54" width="261.15" height="269.46" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-9" value="Уникальный номер" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="890" y="500" width="80" height="50" as="geometry" />
