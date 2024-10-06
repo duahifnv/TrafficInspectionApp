@@ -112,7 +112,7 @@
             <mxPoint x="735" y="975.71" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="nbJ6CdIQrGUm-VfRqVgE-18" value="Код удостоверения" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="nbJ6CdIQrGUm-VfRqVgE-18" value="Код водителя" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="785" y="845.71" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-20" value="Имеет" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
