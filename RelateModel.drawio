@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
   <diagram name="Страница — 1" id="ckJL72oD4UZl0WmPAvJ0">
-    <mxGraphModel dx="1500" dy="757" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1920" math="0" shadow="0">
+    <mxGraphModel dx="1235" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -185,18 +185,16 @@
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-77" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-64" target="nbJ6CdIQrGUm-VfRqVgE-76">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="nbJ6CdIQrGUm-VfRqVgE-96" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-64" target="nbJ6CdIQrGUm-VfRqVgE-97">
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-22" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-64" target="nbJ6CdIQrGUm-VfRqVgE-97">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="1490" y="781" />
-              <mxPoint x="1490" y="820" />
-              <mxPoint x="1340" y="820" />
-              <mxPoint x="1340" y="890" />
+              <mxPoint x="1513" y="828" />
+              <mxPoint x="1475" y="828" />
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="PvoHj5nDGU-bTcy0h9lv-2" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="nbJ6CdIQrGUm-VfRqVgE-96">
-          <mxGeometry x="-0.8793" y="1" relative="1" as="geometry">
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-23" value="1" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="PvoHj5nDGU-bTcy0h9lv-22">
+          <mxGeometry x="-0.8095" y="-1" relative="1" as="geometry">
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
@@ -212,7 +210,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-66" value="Выдает" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1170" y="723.21" width="70" height="70" as="geometry" />
+          <mxGeometry x="1190" y="723.21" width="70" height="70" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-72" value="Код подразделения" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1493.3899999999999" y="600.71" width="80" height="50" as="geometry" />
@@ -265,7 +263,7 @@
           </mxGeometry>
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-97" value="Принадлежит" style="rhombus;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1304.9999999999998" y="870.0000000000001" width="70" height="70" as="geometry" />
+          <mxGeometry x="1439.9999999999998" y="875.7100000000002" width="70" height="70" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-5" value="ФИО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1463.3899999999999" y="1100" width="80" height="50" as="geometry" />
