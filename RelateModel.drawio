@@ -187,20 +187,23 @@
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-49" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-43" target="nbJ6CdIQrGUm-VfRqVgE-53">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-212" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-43" target="PvoHj5nDGU-bTcy0h9lv-211">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-43" value="Категория ТС" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="770" y="900" width="100" height="50" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-47" value="Код категории" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="635" y="820" width="80" height="50" as="geometry" />
+          <mxGeometry x="635" y="800" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-51" value="Разрешенные ТС" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="635" y="880" width="80" height="50" as="geometry" />
+          <mxGeometry x="635" y="917.5" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-52" value="Минимальный возраст" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="635" y="940" width="80" height="50" as="geometry" />
+          <mxGeometry x="635" y="977.5" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-53" value="Дополнительные условия" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="635" y="1000" width="80" height="50" as="geometry" />
+          <mxGeometry x="635" y="1037.5" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-63" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-64" target="nbJ6CdIQrGUm-VfRqVgE-97">
           <mxGeometry relative="1" as="geometry">
@@ -630,6 +633,9 @@
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-209" value="Дата регистрации" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="280" y="530" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-211" value="Обозначение категории" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="635" y="857.78" width="80" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
