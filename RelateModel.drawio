@@ -1,6 +1,6 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/129.0.0.0 Safari/537.36" version="24.7.17">
   <diagram name="Страница — 1" id="ckJL72oD4UZl0WmPAvJ0">
-    <mxGraphModel dx="1235" dy="624" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1920" math="0" shadow="0">
+    <mxGraphModel dx="1000" dy="505" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1920" pageHeight="1920" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -251,6 +251,9 @@
             <mxPoint x="1633.39" y="1061.25" as="targetPoint" />
           </mxGeometry>
         </mxCell>
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;endArrow=none;endFill=0;" edge="1" parent="1" source="nbJ6CdIQrGUm-VfRqVgE-94" target="PvoHj5nDGU-bTcy0h9lv-24">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
         <mxCell id="nbJ6CdIQrGUm-VfRqVgE-94" value="Сотрудник ГИБДД" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1290" y="1016.25" width="100" height="45" as="geometry" />
         </mxCell>
@@ -266,16 +269,16 @@
           <mxGeometry x="1439.9999999999998" y="875.7100000000002" width="70" height="70" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-5" value="ФИО" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1463.3899999999999" y="1100" width="80" height="50" as="geometry" />
+          <mxGeometry x="1563.3899999999999" y="1150" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-6" value="Должность" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1280" y="1161.25" width="80" height="50" as="geometry" />
+          <mxGeometry x="1330" y="1250" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-7" value="Дата найма" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1140" y="1111.25" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-13" value="Код подразделения" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-          <mxGeometry x="1383.39" y="1161.25" width="80" height="50" as="geometry" />
+          <mxGeometry x="1450" y="1211.25" width="80" height="50" as="geometry" />
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-15" value="Дата рождения" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="1589.9999999999998" y="1061.25" width="80" height="50" as="geometry" />
@@ -285,6 +288,9 @@
         </mxCell>
         <mxCell id="PvoHj5nDGU-bTcy0h9lv-20" value="Код удостоверения" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="390" y="700" width="80" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="PvoHj5nDGU-bTcy0h9lv-24" value="Код сотрудника" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="1230" y="1190" width="80" height="50" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
