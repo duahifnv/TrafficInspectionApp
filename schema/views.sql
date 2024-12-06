@@ -1,0 +1,30 @@
+create view categories_info as
+select category_code, permitted_vehicle_name, minimal_age
+from vehicle_categories v join categories_vehicles as c
+on v.category_id = c.category_id;
+
+create view employees_info as
+select full_name, job_title, d.department_type from employee e
+join department as d on e.department_id = d.department_id;
+
+create view violations_info as
+select registration_code, description,
+fine_amount, date_of_violation, date_of_payment
+from traffic_violations v
+join traffic_fine as f on f.fine_id = v.fine_id;
+
+create view vehicles_info as
+select registration_code, vin, m.model_name, m.brand_name,
+p.manufacture_year, p.body_color, c.category_code, d.full_name, date_of_registration
+from vehicle_registration_certificate vrc
+join vehicle_passport as p on p.passport_id = vrc.passport_id
+join models_brands as m on m.model_id = p.model_id
+join vehicle_categories as c on c.category_id = vrc.category_id
+join driver as d on d.driver_id = vrc.driver_id;
+
+create view licenses_info as
+select full_name, date_of_birth, registration_address,
+department_type, date_of_issue, date_of_expiry
+from driver_license l
+join driver as dr on dr.driver_id = l.driver_id
+join department as dp on dp.department_id = l.department_id;
