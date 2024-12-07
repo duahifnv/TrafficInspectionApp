@@ -167,3 +167,6 @@ insert into traffic_violations(registration_code, fine_id, date_of_violation, da
 ('А358ВСRUS161', 9, '2023-06-10', '2023-07-17'),
 ('А358ВСRUS161', 3, '2023-03-14', '2023-03-20'),
 ('В456TXRUS161', 5, '2021-02-24', '2021-03-01');
+
+insert into traffic_violations(registration_code, fine_id, date_of_violation) values
+('Е789BARUS761', 10, '2022-10-13');
