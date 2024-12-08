@@ -1,24 +1,26 @@
-package dstu.inspection.entity;
+package dstu.inspection.entity.info;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Immutable;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
 @Builder
 @Entity
-@Table(name = "vehicle_categories")
-public class Category {
+@Table(name = "categories_info")
+@Immutable
+public class CategoriesInfo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "category_id")
-    private Long categoryId;
-    @Column(name = "category_code", nullable = false)
+    @Column(name = "category_code")
     private String categoryCode;
-    @Column(name = "minimal_age", nullable = false)
+    @Column(name = "permitted_vehicle_name")
+    private String vehicleName;
+    @Column(name = "minimal_age")
     private Integer minimalAge;
 }
