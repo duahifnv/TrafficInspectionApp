@@ -1,6 +1,6 @@
-package dstu.trafficinspection.repository;
+package dstu.inspection.repository;
 
-import dstu.trafficinspection.entity.Driver;
+import dstu.inspection.entity.Driver;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
