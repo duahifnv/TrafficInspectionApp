@@ -1,8 +1,7 @@
-package dstu.trafficinspection.controller;
+package dstu.inspection.controller;
 
-import dstu.trafficinspection.entity.Department;
-import dstu.trafficinspection.entity.Driver;
-import dstu.trafficinspection.service.DepartmentService;
+import dstu.inspection.entity.Department;
+import dstu.inspection.service.DepartmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

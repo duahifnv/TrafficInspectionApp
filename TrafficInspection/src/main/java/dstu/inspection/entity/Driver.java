@@ -1,4 +1,4 @@
-package dstu.trafficinspection.entity;
+package dstu.inspection.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

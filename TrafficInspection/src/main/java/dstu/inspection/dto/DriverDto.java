@@ -1,4 +1,4 @@
-package dstu.trafficinspection.dto;
+package dstu.inspection.dto;
 
 import lombok.Data;
 

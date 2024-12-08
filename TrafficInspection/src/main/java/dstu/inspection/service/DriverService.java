@@ -1,7 +1,7 @@
-package dstu.trafficinspection.service;
+package dstu.inspection.service;
 
-import dstu.trafficinspection.entity.Driver;
-import dstu.trafficinspection.repository.DriverRepository;
+import dstu.inspection.entity.Driver;
+import dstu.inspection.repository.DriverRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

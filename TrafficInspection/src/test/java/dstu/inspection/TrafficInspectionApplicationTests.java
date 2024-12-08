@@ -1,4 +1,4 @@
-package dstu.trafficinspection;
+package dstu.inspection;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
