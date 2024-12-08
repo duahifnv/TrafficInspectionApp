@@ -4,8 +4,13 @@ from vehicle_categories v join categories_vehicles as c
 on v.category_id = c.category_id;
 
 create view employees_info as
-select full_name, job_title, d.department_type from employee e
-join department as d on e.department_id = d.department_id;
+SELECT e.employee_id,
+       e.full_name,
+       e.job_title,
+       d.department_type,
+       d.department_location
+FROM employee e
+JOIN department d on d.department_id = e.department_id;
 
 create view violations_info as
 select registration_code, description,

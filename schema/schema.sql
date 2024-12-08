@@ -86,6 +86,29 @@ create table traffic_violations(
 	date_of_payment date
 );
 
+-- AUTHORIZATION SCHEMA
+create table roles
+(
+    role_id serial primary key,
+    name    varchar(50) not null
+);
+
+create table users
+(
+    user_id  bigserial primary key,
+    phone    varchar(30) unique not null,
+    email    varchar(50) unique not null,
+    password varchar(80) not null,
+    license_id integer
+);
+
+create table users_roles
+(
+    user_id bigint not null references users,
+    role_id integer not null references roles,
+    primary key (user_id, role_id)
+);
+
 -- FOREIGN KEYS
 alter table employee
 add constraint fk_department_employee
