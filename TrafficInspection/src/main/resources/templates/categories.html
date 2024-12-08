@@ -1,0 +1,29 @@
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Categories</title>
+</head>
+<body>
+    <table>
+        <caption><h2>Все категории</h2></caption>
+        <thead>
+            <tr>
+                <th>Обозначение категории</th>
+                <th>Минимальный возраст</th>
+            </tr>
+        </thead>
+        <tbody>
+            <th:block th:each="category: ${categories}">
+            <tr>
+                <td th:text="${category.categoryCode}"></td>
+                <td th:text="${category.minimalAge}"></td>
+            </tr>
+            </th:block>
+        </tbody>
+    </table>
+    <a th:href="@{/}">Главная</a>
+</body>
+</html>
