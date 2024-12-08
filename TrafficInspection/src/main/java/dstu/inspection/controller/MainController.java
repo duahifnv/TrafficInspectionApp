@@ -1,6 +1,6 @@
 package dstu.inspection.controller;
 
-import dstu.inspection.service.StaticService;
+import dstu.inspection.service.InfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/")
 @RequiredArgsConstructor
 public class MainController {
-    private final StaticService staticService;
+    private final InfoService infoService;
     @GetMapping
     public String landingPage() {
         return "landing";
@@ -19,13 +19,19 @@ public class MainController {
     @GetMapping("/categories")
     public String categoryList(Model model) {
         model.addAttribute("categories",
-                staticService.findAllCategories());
+                infoService.findAllCategories());
         return "categories";
     }
     @GetMapping("/fines")
     public String fineList(Model model) {
         model.addAttribute("fines",
-                staticService.findAllFines());
+                infoService.findAllFines());
         return "fines";
+    }
+    @GetMapping("/employees")
+    public String employeeList(Model model) {
+        model.addAttribute("employees",
+                infoService.findAllEmployees());
+        return "employees";
     }
 }
