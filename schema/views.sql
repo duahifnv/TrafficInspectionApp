@@ -13,10 +13,14 @@ FROM employee e
 JOIN department d on d.department_id = e.department_id;
 
 create view violations_info as
-select registration_code, description,
-fine_amount, date_of_violation, date_of_payment
-from traffic_violations v
-join traffic_fine as f on f.fine_id = v.fine_id;
+SELECT v.violation_id,
+       v.registration_code,
+       f.description,
+       f.fine_amount,
+       v.date_of_violation,
+       v.date_of_payment
+FROM traffic_violations v
+         JOIN traffic_fine f ON f.fine_id = v.fine_id;
 
 create view vehicles_info as
 select registration_code, vin, m.model_name, m.brand_name,
@@ -28,8 +32,13 @@ join vehicle_categories as c on c.category_id = vrc.category_id
 join driver as d on d.driver_id = vrc.driver_id;
 
 create view licenses_info as
-select full_name, date_of_birth, registration_address,
-department_type, date_of_issue, date_of_expiry
-from driver_license l
-join driver as dr on dr.driver_id = l.driver_id
-join department as dp on dp.department_id = l.department_id;
+SELECT l.license_id,
+    dr.full_name,
+       dr.date_of_birth,
+       dr.registration_address,
+       dp.department_type,
+       l.date_of_issue,
+       l.date_of_expiry
+FROM driver_license l
+         JOIN driver dr ON dr.driver_id = l.driver_id
+         JOIN department dp ON dp.department_id = l.department_id;
