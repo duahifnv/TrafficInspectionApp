@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/")
 @RequiredArgsConstructor
-public class MainController {
+public class LandingController {
     private final InfoService infoService;
     @GetMapping
     public String landingPage() {
@@ -33,5 +33,11 @@ public class MainController {
         model.addAttribute("employees",
                 infoService.findAllEmployees());
         return "employees";
+    }
+    @GetMapping("/departments")
+    public String departmentList(Model model) {
+        model.addAttribute("departments",
+                infoService.findAllDepartments());
+        return "departments";
     }
 }

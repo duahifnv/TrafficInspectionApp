@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/driver")
+@RequestMapping("/inspect/driver")
 @RequiredArgsConstructor
 public class DriverController {
     private final DriverService driverService;

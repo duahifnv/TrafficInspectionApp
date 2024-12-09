@@ -1,7 +1,7 @@
 package dstu.inspection.service;
 
 import dstu.inspection.entity.Department;
-import dstu.inspection.repository.DepartmentRepository;
+import dstu.inspection.repository.info.DepartmentInfoRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,11 +11,11 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class DepartmentService {
-    private final DepartmentRepository departmentRepository;
+    private final DepartmentInfoRepository departmentInfoRepository;
     public List<Department> findAll() {
-        return departmentRepository.findAll();
+        return departmentInfoRepository.findAll();
     }
     public Optional<Department> findById(Long id) {
-        return departmentRepository.findById(id);
+        return departmentInfoRepository.findById(id);
     }
 }
