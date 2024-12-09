@@ -13,5 +13,10 @@
     <p><a th:href="@{/fines}">Штрафы</a></p>
     <p><a th:href="@{/employees}">Сотрудники</a></p>
     <b><a th:href="@{/me}">Войти в аккаунт</a></b>
+    <p>Узнать о своих штрафах</p>
+    <form action="/getFines" method="get">
+        <input type="text" name="code" placeholder="А000ААRUS061">
+        <input type="submit" value="Узнать">
+    </form>
 </body>
 </html>
