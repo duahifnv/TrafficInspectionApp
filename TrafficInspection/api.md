@@ -7,8 +7,8 @@
 * Подразделения: api/departments
 * Все остальные страницы: api/login, потом страница
 ### Зарегистрированный пользователь
-* Мое удостоверение: api/me/license
-* Мои штрафы: api/me/violation
+* Мое удостоверение: api/me
+* Мои штрафы: api/me/violations
 * Мои ТС: api/me/vehicles
 ### Инспектор ГИБДД
 * Все нарушения: api/inspect/violations
