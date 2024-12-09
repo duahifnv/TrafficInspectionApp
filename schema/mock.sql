@@ -170,3 +170,32 @@ insert into traffic_violations(registration_code, fine_id, date_of_violation, da
 
 insert into traffic_violations(registration_code, fine_id, date_of_violation) values
 ('Е789BARUS761', 10, '2022-10-13');
+
+insert into users(phone, email, password, license_id)
+values ('+79012345678',
+        'ivan@mail.ru',
+        '$2a$12$2Xwwa3PnA0kiQ86OrqIEUuktHO/ji867x79.EeUCiYqK20LTragku',
+        1),
+       ('+79123456789',
+        'petya@mail.ru',
+        '$2a$12$Z0zuRmQm/Skjj99Wbm4WKu75HXgrpKlFDqftqjg3Y6XyTXZhfUH8y',
+        2),
+       ('+79234567890',
+        'sidor@mail.ru',
+        '$2a$12$5Zb2w8KOQOwgZGkjhSfMsuJjeI9zdWCuhivTvv7KuLE60E3LJjphS',
+        3),
+       ('+79345678901',
+        'alex@mail.ru',
+        '$2a$12$C1cBSyZXRNd/uwiyEM3VVOxWboMlZxe5fxSYLJXDkI.n/byCuCDmK',
+        4),
+       ('+79456789012',
+        'anna@mail.ru',
+        '$2a$12$s3cyrY4UUi4iIOUCa.6pX.vhh6Ys4JrRlsMberwGLMWHPeK2EvKY2',
+        5);
+
+insert into users_roles(user_id, role_id)
+values (1, 1),
+       (2, 2),
+       (3, 2),
+       (4, 2),
+       (5, 2);
