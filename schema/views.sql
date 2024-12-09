@@ -33,3 +33,9 @@ department_type, date_of_issue, date_of_expiry
 from driver_license l
 join driver as dr on dr.driver_id = l.driver_id
 join department as dp on dp.department_id = l.department_id;
+
+create view users_info as
+select phone, email, name
+from users_roles ur
+join users u on u.user_id = ur.user_id
+join roles r on r.role_id = ur.role_id;
