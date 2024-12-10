@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>TrafficApp</title>
+  <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+</head>
+<body>
+<header class='header'>
+  <div class='nav_container'>
+    <div class='nav_block'>
+      <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/categories}"><span>Категории ТС</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/fines}"><span>Штрафы</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/departments}"><span>Подразделения</span></a>
+    </div>
+    <a th:href="@{/login}">
+      <button type="button" class="default_button">Войти</button>
+    </a>
+  </div>
+</header>
+<main class="main">
+  <div class='container content'>
+    <div class='label_container'>
+      <span class="h1" th:text="'Нарушения по номеру ' + ${registrationCode}">Нарушения</span>
+    </div>
+    <div class="container list">
+      <div th:if="${violations.isEmpty()}" style="display: flex; justify-content: center">
+        <p class="h1" style="color: gray">Нарушений нет</p>
+      </div>
+      <div th:unless="${violations.isEmpty()}">
+        <th:block th:each="violation: ${violations}">
+          <div class="container item">
+            <p class="item_title" th:text="${violation.description}">Заголовок</p>
+            <p class="wrapper item_description"
+               style="background-color: #01002e; color: white; font-weight: 600"
+               th:text="${violation.fineAmount} + ' ₽'">
+            </p>
+            <p class="item_description" th:text="'Нарушение: ' + ${violation.dateOfViolation}">Текст</p>
+            <p class="item_description" th:text="'Погашение: ' + ${violation.dateOfPayment} ?: '-'">Текст</p>
+          </div>
+        </th:block>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+</footer>
+</body>
+</html>

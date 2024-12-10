@@ -1,17 +1,53 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Inspection_Landing</title>
+    <title>TrafficApp</title>
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../static/css/landing.css" th:href="@{/css/landing.css}" rel="stylesheet">
 </head>
 <body>
-    <h1>Landing</h1>
-    <p><a th:href="@{/departments}">Подразделения</a></p>
-    <p><a th:href="@{/categories}">Категории</a></p>
-    <p><a th:href="@{/fines}">Штрафы</a></p>
-    <p><a th:href="@{/employees}">Сотрудники</a></p>
-    <b><a th:href="@{/me}">Войти в аккаунт</a></b>
+<header class='header'>
+    <div class='nav_container'>
+        <div class='nav_block'>
+            <a class="img_container" th:href="@{/}">
+                <img src="/static/img/home_page_icon.png" th:src='@{/img/home_page_icon.png}' alt="Home"/>
+            </a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/categories}"><span>Категории ТС</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/fines}"><span>Штрафы</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/departments}"><span>Подразделения</span></a>
+        </div>
+        <a th:href="@{/login}">
+            <button type="button" class="default_button">Войти</button>
+        </a>
+    </div>
+</header>
+<main class="main">
+    <div class='container content'>
+        <div class='label_container'>
+            <span class="h1">Проверьте свои штрафы по регистрационному номеру</span>
+        </div>
+        <form class="input_form" action="/getFines" method="get">
+            <input type="text" name="code" id="code" placeholder="A 000 AA RUS 061">
+            <button type="submit" class="default_button">Узнать</button>
+        </form>
+    </div>
+</main>
+<footer class="footer">
+
+</footer>
+<!--    <div id='main_car_image' class='main_car_image'>-->
+<!--        <img th:src='@{/img/landing_car.png}' id='img' class='img'/>-->
+<!--    </div>-->
 </body>
 </html>

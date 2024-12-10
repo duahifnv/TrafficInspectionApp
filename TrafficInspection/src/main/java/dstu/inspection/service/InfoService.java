@@ -4,10 +4,8 @@ import dstu.inspection.entity.Department;
 import dstu.inspection.entity.info.CategoriesInfo;
 import dstu.inspection.entity.info.EmployeesInfo;
 import dstu.inspection.entity.info.FinesInfo;
-import dstu.inspection.repository.info.CategoriesInfoRepository;
-import dstu.inspection.repository.info.DepartmentInfoRepository;
-import dstu.inspection.repository.info.EmployeesInfoRepository;
-import dstu.inspection.repository.info.FinesInfoRepository;
+import dstu.inspection.entity.info.ViolationsInfo;
+import dstu.inspection.repository.info.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +18,7 @@ public class InfoService {
     private final FinesInfoRepository finesInfoRepository;
     private final EmployeesInfoRepository employeesInfoRepository;
     private final DepartmentInfoRepository departmentInfoRepository;
+    private final ViolationsInfoRepository violationsInfoRepository;
     public List<CategoriesInfo> findAllCategories() {
         return categoriesInfoRepository.findAll();
     }
@@ -31,5 +30,11 @@ public class InfoService {
     }
     public List<Department> findAllDepartments() {
         return departmentInfoRepository.findAll();
+    }
+    public List<ViolationsInfo> findAllViolations() {
+        return violationsInfoRepository.findAll();
+    }
+    public List<ViolationsInfo> findByRegistrationCode(String registrationCode) {
+        return violationsInfoRepository.findByRegistrationCode(registrationCode);
     }
 }
