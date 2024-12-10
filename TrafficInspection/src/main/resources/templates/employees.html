@@ -1,33 +1,54 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Employees</title>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
 </head>
 <body>
-<table>
-  <caption><h2>Все сотрудники (Ростовская область)</h2></caption>
-  <thead>
-  <tr>
-    <th>ФИО</th>
-    <th>Должность</th>
-    <th>Тип подразделения</th>
-    <th>Адрес подразделения</th>
-  </tr>
-  </thead>
-  <tbody>
-  <th:block th:each="employee: ${employees}">
-    <tr>
-      <td th:text="${employee.fullName}"></td>
-      <td th:text="${employee.jobTitle}"></td>
-      <td th:text="${employee.departmentType}"></td>
-      <td th:text="${employee.departmentLocation  }"></td>
-    </tr>
-  </th:block>
-  </tbody>
-</table>
-<a th:href="@{/}">Главная</a>
+<header class='header'>
+    <div class='nav_container'>
+        <div class='nav_block'>
+            <a class="img_container" th:href="@{/}">
+                <img src="/static/img/home_page_icon.png" th:src='@{/img/home_page_icon.png}' alt="Home"/>
+            </a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/categories}"><span>Категории ТС</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/fines}"><span>Штрафы</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/departments}"><span>Подразделения</span></a>
+        </div>
+        <a th:href="@{/login}">
+            <button type="button" class="default_button">Войти</button>
+        </a>
+    </div>
+</header>
+<main class="main">
+    <div class='container content'>
+        <div class='label_container'>
+            <span class="h1">Сотрудники ГИБДД</span>
+        </div>
+        <div class="container list">
+            <th:block th:each="employee: ${employees}">
+                <div class="container item">
+                    <p class="item_title" th:text="${employee.fullName}">Заголовок</p>
+                    <p class="item_description" th:text="${employee.jobTitle}">Текст</p>
+                    <p class="item_description" th:text="${employee.departmentType}">Текст</p>
+                    <p class="item_description" th:text="${employee.departmentLocation}">Текст</p>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+</footer>
 </body>
 </html>
