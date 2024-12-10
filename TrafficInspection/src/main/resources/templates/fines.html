@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+    <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+</head>
+<body>
+<header class='header'>
+    <div class='nav_container'>
+        <div class='nav_block'>
+            <a class="img_container" th:href="@{/}">
+                <img src="/static/img/home_page_icon.png" th:src='@{/img/home_page_icon.png}' alt="Home"/>
+            </a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/categories}"><span>Категории ТС</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/fines}"><span>Штрафы</span></a>
+        </div>
+        <div class='nav_block'>
+            <a th:href="@{/departments}"><span>Подразделения</span></a>
+        </div>
+        <a th:href="@{/login}">
+            <button type="button" class="default_button">Войти</button>
+        </a>
+    </div>
+</header>
+<main class="main">
+    <div class='container content'>
+        <div class='label_container'>
+            <span class="h1">Штрафы из базы ГИБДД</span>
+        </div>
+        <div class="container list">
+            <th:block th:each="fine: ${fines}">
+                <div class="container item">
+                    <p class="item_title" th:text="${fine.description}">Заголовок</p>
+                    <p class="wrapper item_description"
+                       style="background-color: #01002e; color: white; font-weight: 600"
+                       th:text="${fine.fineAmount} + ' ₽'">Сумма</p>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+</footer>
+</body>
+</html>

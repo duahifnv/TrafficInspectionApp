@@ -1,0 +1,15 @@
+.content {
+    width: 50%;
+}
+.input_form {
+    background-color: #000830;
+    border-radius: 0.4em;
+    padding: 0.6em 0.4em;
+    display: flex;
+    gap: 1em;
+    justify-content: space-between;
+    height: 4em;
+}
+.input_form input {
+    font-size: 1.4em;
+}
