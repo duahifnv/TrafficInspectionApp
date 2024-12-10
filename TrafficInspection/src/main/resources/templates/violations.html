@@ -1,33 +1,57 @@
+<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport"
-        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Violations</title>
+  <title>TrafficApp</title>
+  <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
+  <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
 </head>
 <body>
-<table>
-  <caption><h2>Нарушения по номеру <span th:text="${registrationCode}"></span></h2></caption>
-  <thead>
-  <tr>
-    <th>Описание штрафа</th>
-    <th>Сумма штрафа</th>
-    <th>Дата нарушения</th>
-    <th>Дата платежа</th>
-  </tr>
-  </thead>
-  <tbody>
-  <th:block th:each="violation: ${violations}">
-    <tr>
-      <td th:text="${violation.description}"></td>
-      <td th:text="${violation.fineAmount}"></td>
-      <td th:text="${violation.dateOfViolation}"></td>
-      <td th:text="${violation.dateOfPayment} ?: '-'"></td>
-    </tr>
-  </th:block>
-  </tbody>
-</table>
-<a th:href="@{/}">Главная</a>
+<header class='header'>
+  <div class='nav_container'>
+    <div class='nav_block'>
+      <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/categories}"><span>Категории ТС</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/fines}"><span>Штрафы</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/departments}"><span>Подразделения</span></a>
+    </div>
+    <a th:href="@{/login}">
+      <button type="button" class="default_button">Войти</button>
+    </a>
+  </div>
+</header>
+<main class="main">
+  <div class='container content'>
+    <div class='label_container'>
+      <span class="h1" th:text="'Нарушения по номеру ' + ${registrationCode}">Нарушения</span>
+    </div>
+    <div class="container list">
+      <div th:if="${violations.isEmpty()}" style="display: flex; justify-content: center">
+        <p class="h1" style="color: gray">Нарушений нет</p>
+      </div>
+      <div th:unless="${violations.isEmpty()}">
+        <th:block th:each="violation: ${violations}">
+          <div class="container item">
+            <p class="item_title" th:text="${violation.description}">Заголовок</p>
+            <p class="wrapper item_description"
+               style="background-color: #01002e; color: white; font-weight: 600"
+               th:text="${violation.fineAmount} + ' ₽'">
+            </p>
+            <p class="item_description" th:text="'Нарушение: ' + ${violation.dateOfViolation}">Текст</p>
+            <p class="item_description" th:text="'Погашение: ' + ${violation.dateOfPayment} ?: '-'">Текст</p>
+          </div>
+        </th:block>
+      </div>
+    </div>
+  </div>
+</main>
+<footer class="footer">
+</footer>
 </body>
 </html>
