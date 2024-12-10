@@ -28,7 +28,7 @@ public class SecurityConfig {
                         authorize.requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/me/**").authenticated()
                                 .anyRequest().permitAll()
-                ).formLogin(Customizer.withDefaults())
+                ).formLogin(form -> form.loginPage("/login").permitAll())
                 .logout(authorize -> authorize.logoutSuccessUrl("/"))
                 .requestCache(cache -> cache.requestCache(requestCache()));
         return http.build();
