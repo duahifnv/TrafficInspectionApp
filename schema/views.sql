@@ -41,3 +41,12 @@ SELECT l.license_id,
        l.date_of_expiry
 FROM driver_license l
          JOIN driver dr ON dr.driver_id = l.driver_id
+         JOIN department dp ON dp.department_id = l.department_id;
+
+create view users_info(phone, email, name) as
+SELECT u.phone,
+       u.email,
+       r.name
+FROM users_roles ur
+         JOIN users u ON u.user_id = ur.user_id
+         JOIN roles r ON r.role_id = ur.role_id;
