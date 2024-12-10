@@ -41,4 +41,3 @@ SELECT l.license_id,
        l.date_of_expiry
 FROM driver_license l
          JOIN driver dr ON dr.driver_id = l.driver_id
-         JOIN department dp ON dp.department_id = l.department_id;
