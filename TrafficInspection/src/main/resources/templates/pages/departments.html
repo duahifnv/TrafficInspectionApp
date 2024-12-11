@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main">
+    <div class='container content'>
+        <div class='label_container'>
+            <span class="h1">Подразделения ГИБДД</span>
+            <span class="h2">Ростовская Область</span>
+        </div>
+        <div class="container list">
+            <th:block th:each="department: ${departments}">
+                <div class="container item">
+                    <p class="item_title" th:text="${department.departmentType}">Заголовок</p>
+                    <p class="item_description" th:text="${department.departmentLocation}">Текст</p>
+                </div>
+            </th:block>
+        </div>
+    </div>
+</main>
+<footer class="container footer" th:replace="~{components/footer :: footer}">"></footer>
+</body>
+</html>
