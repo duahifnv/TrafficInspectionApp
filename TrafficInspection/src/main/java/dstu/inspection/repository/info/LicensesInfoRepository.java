@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface LicensesInfoRepository extends JpaRepository<LicensesInfo, Long> {
     @Query("select info from LicensesInfo info " +
-            "inner join User u on info.licenseId = u.license_id where u.phone = ?1")
+            "inner join User u on info.licenseId = u.licenseId where u.phone = ?1")
     LicensesInfo findByPhone(String phone);
 }
