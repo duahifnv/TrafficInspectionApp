@@ -33,8 +33,11 @@ public class InfoService {
     public List<ViolationsInfo> findAllViolations() {
         return violationsInfoRepository.findAll();
     }
-    public List<ViolationsInfo> findByRegistrationCode(String registrationCode) {
-        return violationsInfoRepository.findByRegistrationCode(registrationCode);
+    public List<ViolationsInfo> findViolationsByRegistrationCode(String registrationCode) {
+        return violationsInfoRepository.findViolationsByRegistrationCode(registrationCode);
+    }
+    public List<ViolationsInfo> findViolationsByPhone(String phone) {
+        return violationsInfoRepository.findViolationsByPhone(phone);
     }
     public List<LicensesInfo> findAll() {
         return licensesInfoRepository.findAll();
