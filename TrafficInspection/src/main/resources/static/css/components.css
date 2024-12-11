@@ -63,16 +63,17 @@ input {
     background-color: #e5e5e5;
     padding: 0;
 }
-.main {
-    width: 100%;
-    height: 60vh;
-}
 .container {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: fit-content;
     border-radius: 0.3em;
+}
+.main {
+    flex-direction: row;
+    width: 100%;
+    height: 85vh;
 }
 .wrapper {
     padding: 0.3em 1em;
@@ -116,4 +117,45 @@ input {
 }
 .item_amount {
     font-weight: 600;
+}
+
+/* TO LICENSE.CSS */
+.license {
+    flex-direction: row;
+    width: 24em;
+    padding: 1em;
+    justify-content: space-between;
+    background-color: #260900;
+}
+.license_block {
+    border-radius: 0.1em;
+    height: 100%;
+    background-color: #d7c7b8;
+}
+.license_block.left {
+    padding-right: 1em;
+    color: #b89782;
+    background-color: transparent;
+}
+.license_block.right {
+    padding: 0.5em;
+}
+.info_block {
+    width: 100%;
+}
+.info_block > * {
+    font-family: "Georgia", sans-serif;
+}
+.info_block label {
+    font-size: 0.7em;
+    font-weight: 600;
+}
+.info_block p {
+    font-size: 0.8em;
+}
+#license_registration_address {
+    font-size: 0.7em;
+}
+#license_department_type {
+    font-size: 0.6em;
 }

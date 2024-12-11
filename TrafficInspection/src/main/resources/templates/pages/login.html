@@ -3,16 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <title>TrafficApp_Login</title>
-    <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
-    <link href="../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet">
-
+    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container main_outer">
     <div class="container main_inner">
         <div class="container back_container">
             <a class="img_container" th:href="@{/}">
-                <img src="/static/img/back_button.png" th:src='@{/img/back_button.png}' alt="Back"/>
+                <img src="/img/back_button.png" th:src='@{/img/back_button.png}' alt="Back"/>
             </a>
         </div>
         <div class="container label_container">
@@ -33,7 +32,7 @@
             </div>
             <div class="container input_container">
                 <label for="phone_input">Пароль</label>
-                <input type="password" id="password_input" name="password" placeholder="_"/>
+                <input type="password" id="password_input" name="password"/>
             </div>
             <button class="default_button" type="submit">Войти</button>
         </form>

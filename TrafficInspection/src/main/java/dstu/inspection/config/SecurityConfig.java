@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 
@@ -29,7 +30,7 @@ public class SecurityConfig {
                                 .requestMatchers("/me/**").authenticated()
                                 .anyRequest().permitAll()
                 ).formLogin(form -> form.loginPage("/login").permitAll())
-                .logout(authorize -> authorize.logoutSuccessUrl("/"))
+                .logout(logout -> logout.logoutUrl("/logout"))
                 .requestCache(cache -> cache.requestCache(requestCache()));
         return http.build();
     }

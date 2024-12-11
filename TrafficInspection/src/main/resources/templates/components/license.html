@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container license" th:fragment="license">
+    <div class="container license_block left">
+        <div class="info_block">
+            <label for="license_full_name">ФИО</label>
+            <p id="license_full_name" th:text="${license.fullName}"></p>
+        </div>
+        <div class="info_block">
+            <label for="license_date_of_birth">Дата рождения</label>
+            <p id="license_date_of_birth" th:text="${license.dateOfBirth}"></p>
+        </div>
+        <div class="info_block">
+            <label for="license_registration_address">Адрес регистрации</label>
+            <p id="license_registration_address" th:text="${license.registrationAddress}"></p>
+        </div>
+    </div>
+    <div class="container license_block right">
+        <div class="info_block">
+            <label for="license_department_type">Тип подразделения</label>
+            <p id="license_department_type" th:text="${license.departmentType}"></p>
+        </div>
+        <div class="info_block">
+            <label for="license_date_of_issue">Дата выдачи</label>
+            <p id="license_date_of_issue" th:text="${license.dateOfIssue}"></p>
+        </div>
+        <div class="info_block">
+            <label for="license_date_of_expiry">Дата окончания действия</label>
+            <p id="license_date_of_expiry" th:text="${license.dateOfExpiry}"></p>
+        </div>
+    </div>
+</div>
+</body>
+</html>
