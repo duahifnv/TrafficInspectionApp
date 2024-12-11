@@ -1,5 +1,6 @@
 package dstu.inspection.config;
 
+import dstu.inspection.service.InfoService;
 import dstu.inspection.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
@@ -22,16 +24,28 @@ import org.springframework.security.web.savedrequest.RequestCache;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final UserService userService;
+    private final InfoService infoService;
     @Bean
     public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
         http.securityMatcher("/**")
-                .authorizeHttpRequests(authorize ->
-                        authorize.requestMatchers("/admin/**").hasRole("ADMIN")
+                .authorizeHttpRequests(
+                        authorize -> authorize.requestMatchers("/admin/**").hasRole("ADMIN")
                                 .requestMatchers("/me/**").authenticated()
-                                .anyRequest().permitAll()
-                ).formLogin(form -> form.loginPage("/login").permitAll())
-                .logout(logout -> logout.logoutUrl("/logout"))
-                .requestCache(cache -> cache.requestCache(requestCache()));
+                                .anyRequest()
+                                .permitAll()
+                )
+                .formLogin(
+                        form -> form.loginPage("/login").successHandler(successHandler())
+                                .permitAll()
+                )
+                .logout(
+                        logout -> logout.logoutUrl("/logout")
+                                .logoutSuccessUrl("/")
+                                .deleteCookies("JSESSIONID")
+                )
+                .requestCache(
+                        cache -> cache.requestCache(requestCache())
+                );
         return http.build();
     }
     @Bean
@@ -50,5 +64,9 @@ public class SecurityConfig {
         provider.setUserDetailsService(userService);
         provider.setPasswordEncoder(passwordEncoder());
         return provider;
+    }
+    @Bean
+    public AuthenticationSuccessHandler successHandler() {
+        return new AuthSuccessHandler(infoService);
     }
 }
