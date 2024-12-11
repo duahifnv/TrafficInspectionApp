@@ -13,6 +13,6 @@ public class AdminController {
     @GetMapping
     public String controlPage(Model model, Principal principal) {
         model.addAttribute("admin_name", principal.getName());
-        return "admin";
+        return "pages/admin";
     }
 }

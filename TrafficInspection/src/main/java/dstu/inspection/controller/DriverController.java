@@ -33,6 +33,6 @@ public class DriverController {
     public String getDriverProfile(@PathVariable Long id, Model model) {
         Optional<Driver> optionalDriver = driverService.findById(id);
         optionalDriver.ifPresent(driver -> model.addAttribute("driver", driver));
-        return "profile";
+        return "profile_old";
     }
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<main class="container main">
+    <div class="container nav_panel" th:fragment="nav_panel">
+        <a th:href="@{/me/license}" >
+            <div class="container item nav_item" id="selected" onclick="changeBar(this)">
+                <span>Водительское удостоверение</span>
+            </div>
+        </a>
+        <a th:href="@{/me/vehicles}" >
+            <div class="container item nav_item" onclick="changeBar(this)">
+                <span>Транспортные средства</span>
+            </div>
+        </a>
+        <a th:href="@{/me/violations}" >
+            <div class="container item nav_item" onclick="changeBar(this)">
+                <span>Нарушения</span>
+            </div>
+        </a>
+        <script>
+            function changeBar(element) {
+                let selectedItem = document.getElementById('selected');
+                selectedItem.removeAttribute('id');
+                element.id = 'selected';
+            }
+        </script>
+    </div>
+</main>
+</body>
+</html>
