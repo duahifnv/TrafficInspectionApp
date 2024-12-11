@@ -3,30 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>TrafficApp</title>
-  <link href="../static/css/header.css" th:href="@{/css/header.css}" rel="stylesheet">
-  <link href="../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+  <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+  <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
 </head>
 <body>
-<header class='header'>
-  <div class='nav_container'>
-    <div class='nav_block'>
-      <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
-    </div>
-    <div class='nav_block'>
-      <a th:href="@{/categories}"><span>Категории ТС</span></a>
-    </div>
-    <div class='nav_block'>
-      <a th:href="@{/fines}"><span>Штрафы</span></a>
-    </div>
-    <div class='nav_block'>
-      <a th:href="@{/departments}"><span>Подразделения</span></a>
-    </div>
-    <a th:href="@{/login}">
-      <button type="button" class="default_button">Войти</button>
-    </a>
-  </div>
-</header>
-<main class="main">
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main">
   <div class='container content'>
     <div class='label_container'>
       <span class="h1" th:text="'Нарушения по номеру ' + ${registrationCode}">Нарушения</span>
@@ -51,7 +33,6 @@
     </div>
   </div>
 </main>
-<footer class="footer">
-</footer>
+<footer class="container footer" th:replace="~{components/footer :: footer}"></footer>
 </body>
 </html>

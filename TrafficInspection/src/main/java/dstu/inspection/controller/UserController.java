@@ -1,5 +1,7 @@
 package dstu.inspection.controller;
 
+import dstu.inspection.entity.info.LicensesInfo;
+import dstu.inspection.service.LicensesInfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,9 +14,16 @@ import java.security.Principal;
 @RequestMapping("/me")
 @RequiredArgsConstructor
 public class UserController {
+    private final LicensesInfoService licensesInfoService;
     @GetMapping
-    public String profilePage(Principal principal, Model model) {
-        model.addAttribute("username", principal.getName());
-        return "profile";
+    public String profilePage() {
+        return "redirect:/me/license";
+    }
+    @GetMapping("/license")
+    public String licensePage(Model model, Principal principal) {
+        LicensesInfo userLicense = licensesInfoService.findByPhone(principal.getName());
+        model.addAttribute("license",
+                userLicense);
+        return "pages/license";
     }
 }
