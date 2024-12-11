@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<header class='header' th:fragment="header">
+  <div class='nav_container'>
+    <div class='nav_block'>
+      <a class="img_container" th:href="@{/}">
+        <img src="/img/home_page_icon.png" th:src='@{/img/home_page_icon.png}' alt="Home"/>
+      </a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/employees}"><span>Сотрудники ГИБДД</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/categories}"><span>Категории ТС</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/fines}"><span>Штрафы</span></a>
+    </div>
+    <div class='nav_block'>
+      <a th:href="@{/departments}"><span>Подразделения</span></a>
+    </div>
+    <a sec:authorize="!isAuthenticated()" th:href="@{/login}">
+      <button type="button" class="default_button">Войти</button>
+    </a>
+    <a sec:authorize="isAuthenticated()" th:href="@{/me}" class="img_container">
+      <img src="/img/user_icon_50.png" th:src='@{/img/user_icon_50.png}' alt="Profile"/>
+    </a>
+  </div>
+</header>
+</body>
+</html>
