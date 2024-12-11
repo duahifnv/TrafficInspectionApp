@@ -44,7 +44,7 @@ public class LandingController {
                                     String registrationCode, Model model) {
         model.addAttribute("registrationCode", registrationCode);
         model.addAttribute("violations",
-                infoService.findByRegistrationCode(registrationCode));
-        return "pages/violations";
+                infoService.findViolationsByRegistrationCode(registrationCode));
+        return "pages/guest_violations";
     }
 }

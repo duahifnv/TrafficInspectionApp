@@ -2,6 +2,7 @@ package dstu.inspection.controller;
 
 import dstu.inspection.entity.info.LicensesInfo;
 import dstu.inspection.entity.info.VehiclesInfo;
+import dstu.inspection.entity.info.ViolationsInfo;
 import dstu.inspection.service.InfoService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -24,7 +25,7 @@ public class UserController {
         return "redirect:/me/license";
     }
     @GetMapping("/license")
-    public String licensePage() {
+    public String licenseTab() {
         return "pages/license";
     }
     @GetMapping("/license/new")
@@ -37,10 +38,17 @@ public class UserController {
         return "redirect:/license";
     }
     @GetMapping("/vehicles")
-    public String vehiclesPage(Model model, Principal principal) {
+    public String vehiclesTab(Model model, Principal principal) {
         List<VehiclesInfo> userVehicles = infoService.findVehiclesByPhone(principal.getName());
         model.addAttribute("vehicles",
                 userVehicles);
         return "pages/vehicles";
+    }
+    @GetMapping("/violations")
+    public String violationsTab(Model model, Principal principal) {
+        List<ViolationsInfo> violations = infoService.findViolationsByPhone(principal.getName());
+        model.addAttribute("violations",
+                violations);
+        return "pages/violations";
     }
 }
