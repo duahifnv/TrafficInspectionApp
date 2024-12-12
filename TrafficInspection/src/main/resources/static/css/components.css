@@ -46,13 +46,12 @@ input {
     border-radius: 0.2em;
     background-color: white;
     width: 100%;
-    font-family: "Roboto Slab", sans-serif;
     padding: 0.2em;
 }
 .default_button {
-    font-size: 0.8em;
+    font-size: 0.7em;
     background-color: #1C1962;
-    padding: 0.2em 1em;
+    padding: 0.6em 1em;
     color: white;
 }
 .img_container {
@@ -72,8 +71,6 @@ input {
     border-radius: 0.3em;
 }
 .main {
-    flex-direction: row;
-    width: 100%;
     height: 85vh;
 }
 .wrapper {
@@ -105,10 +102,12 @@ input {
     overflow-x: hidden;
 }
 .item {
+    gap: 0.3em;
     background-color: whitesmoke;
     width: 100%;
     height: fit-content;
     padding: 0.5em 0.5em;
+    margin-bottom: 0.5em;
 }
 .item p {
     font-size: smaller;
@@ -119,23 +118,31 @@ input {
 .item_amount {
     font-weight: 600;
 }
-
+.reg_code {
+    background-color: #d7d7d7;
+    font-family: 'Montserrat', sans-serif;
+}
+.category_code {
+    background-color: black;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+}
 /* TO LICENSE.CSS */
 .license {
     flex-direction: row;
     width: 24em;
     padding: 1em;
     justify-content: space-between;
-    background-color: #260900;
+    background-color: #000830;
 }
 .license_block {
     border-radius: 0.1em;
     height: 100%;
-    background-color: #d7c7b8;
+    background-color: white;
 }
 .license_block.left {
     padding-right: 1em;
-    color: #b89782;
+    color: white;
     background-color: transparent;
 }
 .license_block.right {
@@ -145,7 +152,7 @@ input {
     width: 100%;
 }
 .info_block > * {
-    font-family: "Georgia", sans-serif;
+    font-family: "Montserrat", sans-serif;
 }
 .info_block label {
     font-size: 0.7em;
@@ -160,3 +167,28 @@ input {
 #license_department_type {
     font-size: 0.6em;
 }
+.label_container {
+    width: 100%;
+}
+.form_container {
+    gap: 0.3em;
+    justify-content: space-between;
+    height: fit-content;
+    background-color: #000830;
+    padding: 1em 0.5em;
+}
+.form_container label {
+    font-size: 0.5em;
+    font-weight: 600;
+    color: white;
+}
+.back_container {
+    justify-content: start;
+    height: 1em;
+}
+.input_container p {
+    color: maroon;
+    font-weight: 600;
+    font-size: 0.6em;
+}
+
