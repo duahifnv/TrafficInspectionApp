@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../static/css/layout.css" th:href="@{/css/components.css}" rel="stylesheet">
     <title></title>
 </head>
 <body>
@@ -28,9 +29,17 @@
     <a sec:authorize="!isAuthenticated()" th:href="@{/login}">
       <button type="button" class="default_button">Войти</button>
     </a>
-    <a sec:authorize="isAuthenticated()" th:href="@{/me}" class="img_container">
-      <img src="/img/user_icon_50.png" th:src='@{/img/user_icon_50.png}' alt="Profile"/>
-    </a>
+    <div class="dropdown">
+      <a sec:authorize="isAuthenticated()" th:href="@{/me}" class="img_container">
+        <img src="/img/user_icon_50.png" th:src='@{/img/user_icon_50.png}' alt="Profile"/>
+      </a>
+      <div class="dropdown-content">
+        <a th:href="@{/me/license}">Удостоверение</a>
+        <a th:href="@{/me/vehicles}">Транспорт</a>
+        <a th:href="@{/me/violations}">Нарушения</a>
+        <a style="color: maroon" th:href="@{/logout}">Выход</a>
+      </div>
+    </div>
   </div>
 </header>
 </body>

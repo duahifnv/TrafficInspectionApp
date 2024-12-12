@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container list" th:fragment="violations">
+    <div th:if="${violations.isEmpty()}" style="display: flex; justify-content: center">
+        <p class="h1" style="color: gray">Нарушений нет</p>
+    </div>
+    <div th:unless="${violations.isEmpty()}">
+        <th:block th:each="violation: ${violations}">
+            <div class="container item">
+                <p class="item_title" th:text="${violation.description}">Заголовок</p>
+                <p class="wrapper item_description"
+                   style="background-color: #01002e; color: white; font-weight: 600"
+                   th:text="${violation.fineAmount} + ' ₽'">
+                </p>
+                <p class="item_description" style="font-weight: 600" th:text="${violation.registrationCode}">Текст</p>
+                <p class="item_description" th:text="'Нарушение: ' + ${violation.dateOfViolation}">Текст</p>
+                <p class="item_description" th:text="'Погашение: ' + ${violation.dateOfPayment} ?: '-'">Текст</p>
+            </div>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>
