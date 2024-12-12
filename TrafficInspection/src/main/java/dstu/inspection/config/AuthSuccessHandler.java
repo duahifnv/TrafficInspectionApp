@@ -75,7 +75,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
     private void addLicenseInfo(HttpServletRequest request, Authentication authentication) {
-        LicensesInfo userLicense = infoService.findLicenseByPhone(authentication.getName());
+        LicensesInfo userLicense = infoService.findLicenseInfoByPhone(authentication.getName());
         if (userLicense != null) {
             HttpSession session = request.getSession(false);
             session.setAttribute("license", userLicense);

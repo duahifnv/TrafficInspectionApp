@@ -27,7 +27,7 @@ public class AuthenticationController {
         return "pages/registration";
     }
     @PostMapping("/registration")
-    public String registrationHandle(@ModelAttribute("user") @Valid UserDto userDto,
+    public String sendRegistrationForm(@ModelAttribute("user") @Valid UserDto userDto,
                                      BindingResult result, Model model) {
         if (result.hasErrors()) {
             return "pages/registration";

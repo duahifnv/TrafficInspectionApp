@@ -1,7 +1,9 @@
 package dstu.inspection.service;
 
 import dstu.inspection.entity.Department;
+import dstu.inspection.entity.License;
 import dstu.inspection.entity.info.*;
+import dstu.inspection.repository.LicenseRepository;
 import dstu.inspection.repository.info.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -39,13 +41,16 @@ public class InfoService {
     public List<ViolationsInfo> findViolationsByPhone(String phone) {
         return violationsInfoRepository.findViolationsByPhone(phone);
     }
-    public List<LicensesInfo> findAll() {
+    public List<LicensesInfo> findAllLicenseInfos() {
         return licensesInfoRepository.findAll();
     }
-    public LicensesInfo findLicenseByPhone(String phone) {
+    public LicensesInfo findLicenseInfoById(Long id) {
+        return licensesInfoRepository.findById(id).orElse(null);
+    }
+    public LicensesInfo findLicenseInfoByPhone(String phone) {
         return licensesInfoRepository.findByPhone(phone);
     }
-    public List<VehiclesInfo> findVehiclesByPhone(String phone) {
+    public List<VehiclesInfo> findVehicleInfoByPhone(String phone) {
         return vehiclesInfoRepository.findByPhone(phone);
     }
 }

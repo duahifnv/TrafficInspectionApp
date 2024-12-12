@@ -76,6 +76,12 @@ public class UserService implements UserDetailsService {
                 .build();
         return userRepository.save(user);
     }
+    public User updateUser(User user) {
+        if (userRepository.findById(user.getUserId()).isPresent()) {
+            return userRepository.save(user);
+        }
+        return null;
+    }
     public void deleteUser(String phone) {
         User user = userRepository.findByPhone(phone);
         if (user != null) {

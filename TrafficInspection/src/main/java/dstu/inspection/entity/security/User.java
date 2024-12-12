@@ -23,7 +23,7 @@ public class User {
     private String email;
     private String password;
     @Column(name = "license_id")
-    private Integer licenseId;
+    private Long licenseId;
     @ManyToMany
     @JoinTable(name = "users_roles",
     joinColumns = @JoinColumn(name = "user_id"),
