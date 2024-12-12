@@ -1,11 +1,18 @@
 package dstu.inspection.controller;
 
+import dstu.inspection.dto.UserDto;
+import dstu.inspection.entity.security.User;
+import dstu.inspection.service.UserService;
+import dstu.inspection.validation.UserAlreadyExistAuthenticationException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -13,6 +20,27 @@ import org.springframework.web.bind.annotation.*;
 public class AuthenticationController {
     private final SecurityContextLogoutHandler logoutHandler =
             new SecurityContextLogoutHandler();
+    private final UserService userService;
+    @GetMapping("/registration")
+    public String registrationPage(Model model) {
+        model.addAttribute("user", new UserDto());
+        return "pages/registration";
+    }
+    @PostMapping("/registration")
+    public String registrationHandle(@ModelAttribute("user") @Valid UserDto userDto,
+                                     BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            return "pages/registration";
+        }
+        try {
+            User registeredUser = userService.save(userDto);
+        }
+        catch (UserAlreadyExistAuthenticationException e) {
+            model.addAttribute("usernameError", e.getMessage());
+            return "pages/registration";
+        }
+        return "redirect:/login";
+    }
     // Получаем страницу авторизации
     @GetMapping("/login")
     public String loginPage() {
