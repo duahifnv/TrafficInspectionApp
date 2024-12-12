@@ -14,6 +14,9 @@
             <span class="h1">Мое удостоверение</span>
         </div>
         <div class="container license" th:replace="~{components/license :: license}"></div>
+        <form th:action="@{/me/license/delete}" method="post">
+            <button type="submit" class="default_button">Удалить удостоверение</button>
+        </form>
     </div>
     <div th:if="${license == null}" class="container blocked">
         <div class="container banner_info">
