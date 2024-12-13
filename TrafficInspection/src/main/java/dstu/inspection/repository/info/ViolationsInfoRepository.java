@@ -13,6 +13,6 @@ public interface ViolationsInfoRepository extends JpaRepository<ViolationsInfo, 
     List<ViolationsInfo> findViolationsByRegistrationCode(String registrationCode);
     @Query("select info from ViolationsInfo info " +
             "inner join UsersLicensesInfo u on info.registrationCode = u.registrationCode " +
-            "where u.phone=?1")
-    List<ViolationsInfo> findViolationsByPhone(String phone);
+            "where u.username=?1")
+    List<ViolationsInfo> findViolationsByUsername(String username);
 }

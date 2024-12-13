@@ -38,8 +38,8 @@ public class InfoService {
     public List<ViolationsInfo> findViolationsByRegistrationCode(String registrationCode) {
         return violationsInfoRepository.findViolationsByRegistrationCode(registrationCode);
     }
-    public List<ViolationsInfo> findViolationsByPhone(String phone) {
-        return violationsInfoRepository.findViolationsByPhone(phone);
+    public List<ViolationsInfo> findViolationsByUsername(String username) {
+        return violationsInfoRepository.findViolationsByUsername(username);
     }
     public List<LicensesInfo> findAllLicenseInfos() {
         return licensesInfoRepository.findAll();
@@ -47,10 +47,16 @@ public class InfoService {
     public LicensesInfo findLicenseInfoById(Long id) {
         return licensesInfoRepository.findById(id).orElse(null);
     }
-    public LicensesInfo findLicenseInfoByPhone(String phone) {
-        return licensesInfoRepository.findByPhone(phone);
+    public LicensesInfo findLicenseInfoByUsername(String username) {
+        return licensesInfoRepository.findByUsername(username);
     }
-    public List<VehiclesInfo> findVehicleInfoByPhone(String phone) {
-        return vehiclesInfoRepository.findByPhone(phone);
+    public List<VehiclesInfo> findAll() {
+        return vehiclesInfoRepository.findAll();
+    }
+    public VehiclesInfo findVehicleInfoByRegistrationCode(String registrationCode) {
+        return vehiclesInfoRepository.findByRegistrationCode(registrationCode);
+    }
+    public List<VehiclesInfo> findVehicleInfoByUsername(String username) {
+        return vehiclesInfoRepository.findByUsername(username);
     }
 }

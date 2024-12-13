@@ -35,22 +35,22 @@ public class UserService implements UserDetailsService {
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = findByPhone(username);
+        User user = findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(
-                    String.format("User with phone '%s' not found", username));
+                    String.format("User with username '%s' not found", username));
         }
-        return new org.springframework.security.core.userdetails.User(user.getPhone(),
+        return new org.springframework.security.core.userdetails.User(user.getUsername(),
                 user.getPassword(), rolesToAuthorities(user.getRoles()));
     }
     public List<User> findAll() {
         return userRepository.findAll();
     }
-    public User findByPhone(String phone) {
-        return userRepository.findByPhone(phone);
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
     }
     public User findByEmail(String email) {
-        return userRepository.findByPhone(email);
+        return userRepository.findByEmail(email);
     }
     private Collection<? extends GrantedAuthority> rolesToAuthorities(Collection<Role> roles) {
         return roles.stream().map(r -> new SimpleGrantedAuthority(r.getName())).toList();
@@ -58,7 +58,7 @@ public class UserService implements UserDetailsService {
     @Transactional
     public User save(UserDto userDto)
             throws UserAlreadyExistAuthenticationException {
-        if (emailExists(userDto.getEmail()) || phoneExists(userDto.getPhone())) {
+        if (emailExists(userDto.getEmail()) || usernameExists(userDto.getUsername())) {
             throw new UserAlreadyExistAuthenticationException(
                     "Пользователь с таким номер телефона или почтой уже существует");
         }
@@ -69,7 +69,7 @@ public class UserService implements UserDetailsService {
         List<Role> userRoles = Arrays.asList(userDefaultRole);
         String preparedPassword = passwordEncoder.encode(userDto.getPassword());
         User user = User.builder()
-                .phone(userDto.getPhone())
+                .username(userDto.getUsername())
                 .email(userDto.getEmail())
                 .password(preparedPassword)
                 .roles(userRoles)
@@ -82,8 +82,8 @@ public class UserService implements UserDetailsService {
         }
         return null;
     }
-    public void deleteUser(String phone) {
-        User user = userRepository.findByPhone(phone);
+    public void deleteUser(String username) {
+        User user = userRepository.findByUsername(username);
         if (user != null) {
             userRepository.deleteById(user.getUserId());
         }
@@ -91,7 +91,7 @@ public class UserService implements UserDetailsService {
     private boolean emailExists(String email) {
         return userRepository.findByEmail(email) != null;
     }
-    private boolean phoneExists(String phone) {
-        return userRepository.findByPhone(phone) != null;
+    private boolean usernameExists(String username) {
+        return userRepository.findByUsername(username) != null;
     }
 }
