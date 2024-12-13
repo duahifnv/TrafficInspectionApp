@@ -5,7 +5,8 @@ create table employee(
 	date_of_birth date not null,
 	date_of_hire date not null,
 	job_title varchar(100) not null,
-	department_id int not null
+	department_id int not null,
+	access_key varchar(500) not null
 );
 
 create table department(
@@ -96,9 +97,9 @@ create table roles
 create table users
 (
     user_id  bigserial primary key,
-    phone    varchar(30) unique not null,
+    username    varchar(30) unique not null,
     email    varchar(50) unique not null,
-    password varchar(80) not null,
+    password varchar(500) not null,
     license_id integer
 );
 

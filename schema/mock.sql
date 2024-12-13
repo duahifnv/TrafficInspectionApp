@@ -124,26 +124,36 @@ INSERT INTO vehicle_passport (vin, model_id, manufacture_year, body_color, date_
 ('1HGCM82633C654321', 10, 2020, 'Белый', '2023-06-15'),
 ('1HGCM82633D123456', 23, 2023, 'Серый', '2023-07-20');
 
-INSERT INTO employee (full_name, date_of_birth, date_of_hire, job_title, department_id) VALUES
-('Иванов Иван Иванович', '1985-05-10', '2020-01-15', 'Начальник контрольного поста милиции', 1),
-('Петрова Анна Сергеевна', '1990-08-22', '2019-04-12', 'Начальник смены', 2),
-('Сидоров Алексей Викторович', '1978-12-30', '2017-07-19', 'Старший инспектор по розыску', 3),
-('Федорова Мария Владимировна', '1982-02-15', '2021-03-09', 'Государственный инспектор дорожного надзора', 4),
-('Кузнецов Сергей Александрович', '1995-09-05', '2022-06-25', 'Инспектор (ДПС)', 5),
-('Смирнова Елена Николаевна', '1980-03-29', '2015-12-01', 'Начальник смены', 6),
-('Белов Максим Олегович', '1992-11-11', '2020-08-14', 'Государственный инспектор дорожного надзора', 7),
-('Михайлова Дарья Андреевна', '1984-07-03', '2016-09-09', 'Инспектор (ДПС)', 1),
-('Тихонов Степан Анатольевич', '1975-10-20', '2018-05-21', 'Старший инспектор по розыску', 6),
-('Ковалёв Артем Валерьевич', '1994-06-15', '2019-07-10', 'Старший инспектор по розыску', 7);
+INSERT INTO employee (full_name, date_of_birth, date_of_hire, job_title, department_id, access_key) VALUES
+('Иванов Иван Иванович', '1985-05-10', '2020-01-15', 'Начальник контрольного поста милиции', 1,
+ '$2a$12$zaRKsXDsaoOz2ig13V5A4exlcF8HWDSDYNYspDZOSVSffyTKCt6y2'),
+('Петрова Анна Сергеевна', '1990-08-22', '2019-04-12', 'Начальник смены', 2,
+'$2a$12$jy.fJt2QR8qGr7uoJM3Ynu2vEel/nZpoehmVJx4ohZoxoobdoICla'),
+('Сидоров Алексей Викторович', '1978-12-30', '2017-07-19', 'Старший инспектор по розыску', 3,
+'$2a$12$lIgzonYEADFI8bshUQoGGuk6xsbvgTvmbt7H5f8iS9CgBIim3ZLem'),
+('Федорова Мария Владимировна', '1982-02-15', '2021-03-09', 'Государственный инспектор дорожного надзора', 4,
+'$2a$12$ZmhQu84BWc3g/80auFHC3Of5gC19DzJvFr84/khrbopmTCS3HloGS'),
+('Кузнецов Сергей Александрович', '1995-09-05', '2022-06-25', 'Инспектор (ДПС)', 5,
+'$2a$12$Dg6EawKzcQDQjNrznYEvhOwGDTR9tCPudjiYaF4tSCrsJKeMwu0r2'),
+('Смирнова Елена Николаевна', '1980-03-29', '2015-12-01', 'Начальник смены', 6,
+'$2a$12$.bJ2FPCnvxkKYuToTAckW.yH5n.ay6fPmLmDldXWdL29uE.XSWiNm'),
+('Белов Максим Олегович', '1992-11-11', '2020-08-14', 'Государственный инспектор дорожного надзора', 7,
+'$2a$12$IaDh1P8hs5EKykF/DeZBtuZz1lOyPC40snEYHAEHT13oSEKX72qRW'),
+('Михайлова Дарья Андреевна', '1984-07-03', '2016-09-09', 'Инспектор (ДПС)', 1,
+'$2a$12$njADOeD.z2NvadeRCSYcJ.hvxLEUTMQ8PJMK81f3/YAf57ZF30F4a'),
+('Тихонов Степан Анатольевич', '1975-10-20', '2018-05-21', 'Старший инспектор по розыску', 6,
+'$2a$12$oLPVVsqwv6klarQxmRnVaOm5XXFY7j3zV.0x5kggt1XG2vMz7C0d2'),
+('Ковалёв Артем Валерьевич', '1994-06-15', '2019-07-10', 'Старший инспектор по розыску', 7,
+'$2a$12$DLjK2RNrjySg6V3i4Sv1lutDP4pC5d4Pkb5LJOnI9zJNdOYALo2/2');
 
 insert into vehicle_registration_certificate
 (registration_code, passport_id, driver_id, category_id, department_id, date_of_registration) values
-('А358ВСRUS161', 1, 2, 3, 1, '2020-01-18'),
-('А123BCRUS061', 2, 1, 3, 1, '2023-06-17'),
-('В456TXRUS161', 3, 2, 1, 7, '2021-11-20'),
-('Е789BARUS761', 4, 3, 6, 3, '2020-04-01'),
+('A358BCRUS161', 1, 2, 3, 1, '2020-01-18'),
+('A123BCRUS061', 2, 1, 3, 1, '2023-06-17'),
+('B456TXRUS161', 3, 2, 1, 7, '2021-11-20'),
+('E789BARUS761', 4, 3, 6, 3, '2020-04-01'),
 ('C321BORUS061', 5, 1, 3, 1, '2024-01-15'),
-('М654MMRUS161', 6, 4, 1, 6, '2024-02-12'),
+('M654MMRUS161', 6, 4, 1, 6, '2024-02-12'),
 ('B987BCRUS761', 7, 5, 3, 7, '2024-05-28');
 
 INSERT INTO traffic_fine (description, fine_amount) VALUES
@@ -164,14 +174,15 @@ INSERT INTO traffic_fine (description, fine_amount) VALUES
 ('Неправильное использование сигнала поворота', 1000.00);
 
 insert into traffic_violations(registration_code, fine_id, date_of_violation, date_of_payment) values
-('А358ВСRUS161', 9, '2023-06-10', '2023-07-17'),
-('А358ВСRUS161', 3, '2023-03-14', '2023-03-20'),
-('В456TXRUS161', 5, '2021-02-24', '2021-03-01');
+('A358BCRUS161', 9, '2023-06-10', '2023-07-17'),
+('A358BCRUS161', 3, '2023-03-14', '2023-03-20'),
+('B456TXRUS161', 5, '2021-02-24', '2021-03-01');
 
 insert into traffic_violations(registration_code, fine_id, date_of_violation) values
-('Е789BARUS761', 10, '2022-10-13');
+('E789BARUS761', 10, '2022-10-13'),
+('E789BARUS761', 12, '2023-11-16');
 
-insert into users(phone, email, password, license_id)
+insert into users(username, email, password, license_id)
 values ('+79012345678',
         'ivan@mail.ru',
         '$2a$12$2Xwwa3PnA0kiQ86OrqIEUuktHO/ji867x79.EeUCiYqK20LTragku',
@@ -191,11 +202,41 @@ values ('+79012345678',
        ('+79456789012',
         'anna@mail.ru',
         '$2a$12$s3cyrY4UUi4iIOUCa.6pX.vhh6Ys4JrRlsMberwGLMWHPeK2EvKY2',
-        5);
+        5),
+        ('+79887040132',
+        'max135603@gmail.com',
+        '$2a$10$tRBUgrogWzR0XF.AeJIoy.MdlsiHxJMxfnkwsBbLd1JCM2kBW9mu.');
+
+INSERT INTO users (username, email, password) VALUES
+('0001', '0001@mail.ru', '$2a$12$zaRKsXDsaoOz2ig13V5A4exlcF8HWDSDYNYspDZOSVSffyTKCt6y2'),
+('0002', '0002@mail.ru', '$2a$12$jy.fJt2QR8qGr7uoJM3Ynu2vEel/nZpoehmVJx4ohZoxoobdoICla'),
+('0003', '0003@mail.ru', '$2a$12$lIgzonYEADFI8bshUQoGGuk6xsbvgTvmbt7H5f8iS9CgBIim3ZLem'),
+('0004', '0004@mail.ru', '$2a$12$ZmhQu84BWc3g/80auFHC3Of5gC19DzJvFr84/khrbopmTCS3HloGS'),
+('0005', '0005@mail.ru', '$2a$12$Dg6EawKzcQDQjNrznYEvhOwGDTR9tCPudjiYaF4tSCrsJKeMwu0r2'),
+('0006', '0006@mail.ru', '$2a$12$.bJ2FPCnvxkKYuToTAckW.yH5n.ay6fPmLmDldXWdL29uE.XSWiNm'),
+('0007', '0007@mail.ru', '$2a$12$IaDh1P8hs5EKykF/DeZBtuZz1lOyPC40snEYHAEHT13oSEKX72qRW'),
+('0008', '0008@mail.ru', '$2a$12$njADOeD.z2NvadeRCSYcJ.hvxLEUTMQ8PJMK81f3/YAf57ZF30F4a'),
+('0009', '0009@mail.ru', '$2a$12$oLPVVsqwv6klarQxmRnVaOm5XXFY7j3zV.0x5kggt1XG2vMz7C0d2'),
+('0010', '0010@mail.ru', '$2a$12$DLjK2RNrjySg6V3i4Sv1lutDP4pC5d4Pkb5LJOnI9zJNdOYALo2/2');
 
 insert into users_roles(user_id, role_id)
-values (1, 1),
-       (2, 2),
+values (1, 1);
+
+insert into users_roles(user_id, role_id)
+values (2, 2),
        (3, 2),
        (4, 2),
-       (5, 2);
+       (5, 2),
+       (6, 2);
+
+INSERT INTO users_roles (user_id, role_id) VALUES
+(7, 3),
+(8, 3),
+(9, 3),
+(10, 3),
+(11, 3),
+(12, 3),
+(13, 3),
+(14, 3),
+(15, 3),
+(16, 3);

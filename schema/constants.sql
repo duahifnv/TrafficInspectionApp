@@ -39,5 +39,4 @@ values
 (16, 'Трамваи');
 
 insert into roles (name)
-values('ROLE_ADMIN'), ('ROLE_USER');
-
+values('ROLE_ADMIN'), ('ROLE_USER'), ('ROLE_EMPLOYEE');
