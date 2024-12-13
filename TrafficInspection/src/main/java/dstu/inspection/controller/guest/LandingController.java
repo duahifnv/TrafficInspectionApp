@@ -1,4 +1,4 @@
-package dstu.inspection.controller;
+package dstu.inspection.controller.guest;
 
 import dstu.inspection.service.InfoService;
 import lombok.RequiredArgsConstructor;
@@ -13,31 +13,31 @@ public class LandingController {
     private final InfoService infoService;
     @GetMapping
     public String landingPage() {
-        return "pages/landing";
+        return "pages/guest/landing";
     }
     @GetMapping("/categories")
     public String categoryList(Model model) {
         model.addAttribute("categories",
                 infoService.findAllCategories());
-        return "pages/categories";
+        return "pages/guest/categories";
     }
     @GetMapping("/fines")
     public String fineList(Model model) {
         model.addAttribute("fines",
                 infoService.findAllFines());
-        return "pages/fines";
+        return "pages/guest/fines";
     }
     @GetMapping("/employees")
     public String employeeList(Model model) {
         model.addAttribute("employees",
                 infoService.findAllEmployees());
-        return "pages/employees";
+        return "pages/guest/employees";
     }
     @GetMapping("/departments")
     public String departmentList(Model model) {
         model.addAttribute("departments",
                 infoService.findAllDepartments());
-        return "pages/departments";
+        return "pages/guest/departments";
     }
     @GetMapping("/getFines")
     public String violationList(@RequestParam("code")
@@ -45,6 +45,6 @@ public class LandingController {
         model.addAttribute("registrationCode", registrationCode);
         model.addAttribute("violations",
                 infoService.findViolationsByRegistrationCode(registrationCode));
-        return "pages/guest_violations";
+        return "pages/guest/guest_violations";
     }
 }

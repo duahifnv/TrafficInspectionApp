@@ -1,4 +1,4 @@
-package dstu.inspection.controller;
+package dstu.inspection.controller.inspect;
 
 import dstu.inspection.entity.Department;
 import dstu.inspection.service.DepartmentService;
@@ -9,14 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 
 @Controller
 @RequestMapping("/department")
 @RequiredArgsConstructor
-public class DepartmentController {
+public class InspectDepartmentController {
     private final DepartmentService departmentService;
     @GetMapping
     public ResponseEntity<?> getAllDepartments() {

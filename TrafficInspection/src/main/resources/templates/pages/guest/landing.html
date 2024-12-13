@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>TrafficApp</title>
-    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
-    <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
-    <link href="../../static/css/landing.css" th:href="@{/css/landing.css}" rel="stylesheet">
+    <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+    <link href="../../../static/css/landing.css" th:href="@{/css/landing.css}" rel="stylesheet">
 </head>
 <body>
 <header th:replace="~{components/header :: header}"></header>
-<main class="container main">
+<main class="container main" style="position: relative">
     <div class='container content'>
         <div class='label_container'>
             <span class="h1">Проверьте свои штрафы по регистрационному номеру</span>
@@ -18,6 +18,9 @@
             <input type="text" name="code" id="code" placeholder="A 000 AA RUS 061">
             <button type="submit" class="default_button">Узнать</button>
         </form>
+    </div>
+    <div class="img_container landing_container">
+        <img src="/static/img/landing_car.png" th:src='@{/img/landing_car.png}' alt="Emp_Profile"/>
     </div>
 </main>
 <footer class="container footer" th:replace="~{components/footer :: footer}"></footer>

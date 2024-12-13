@@ -12,7 +12,7 @@
         <p class="h1" style="color: gray">Нарушений нет</p>
     </div>
     <div th:unless="${violations.isEmpty()}">
-        <th:block th:each="violation, iter: ${violations}">
+        <th:block th:each="violation: ${violations}">
             <div class="container item">
                 <p class="wrapper item_title reg_code" th:text="${violation.registrationCode}">REGISTRATION_CODE</p>
                 <p class="item_title" th:text="${violation.description}">Заголовок</p>

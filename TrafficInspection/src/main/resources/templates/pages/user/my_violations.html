@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>TrafficApp</title>
-  <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
-  <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+  <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+  <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
 </head>
 <body>
 <header th:replace="~{components/header :: header}"></header>
@@ -13,7 +13,7 @@
     <div class='label_container'>
       <span class="h1">Мои нарушения</span>
     </div>
-    <div class="container list" th:replace="~{components/violations :: violations}"></div>
+    <div class="container list" th:replace="~{components/my_violations :: violations}"></div>
   </div>
   <div th:if="${license == null}" class="container blocked">
     <div class="container banner_info">

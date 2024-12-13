@@ -3,20 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <title>TrafficApp</title>
-    <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
-    <link href="../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+    <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
 </head>
 <body>
 <header th:replace="~{components/header :: header}"></header>
 <main class="container main" style="position: relative" th:with="license=${session.license}">
     <div th:if="${license != null}" class="container nav_content">
         <div class='label_container'>
-            <span class="h1">Мое удостоверение</span>
+            <span class="h1">Мой транспорт</span>
         </div>
-        <div class="container license" th:replace="~{components/license :: license}"></div>
-        <form th:action="@{/me/license/delete}" method="post">
-            <button type="submit" class="default_button">Удалить удостоверение</button>
-        </form>
+        <div class="container list" th:replace="~{components/vehicles :: vehicles}"></div>
     </div>
     <div th:if="${license == null}" class="container blocked">
         <div class="container banner_info">

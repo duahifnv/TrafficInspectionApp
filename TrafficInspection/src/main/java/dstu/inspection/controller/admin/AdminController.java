@@ -1,4 +1,4 @@
-package dstu.inspection.controller;
+package dstu.inspection.controller.admin;
 
 import dstu.inspection.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,11 +16,11 @@ public class AdminController {
         model.addAttribute("allUsers", userService.findAll());
         return "admin";
     }
-    @PostMapping("/admin/{phone}/{action}")
-    public String deleteUser(@PathVariable String phone,
+    @PostMapping("/admin/{username}/{action}")
+    public String deleteUser(@PathVariable String username,
                              @PathVariable String action) {
         if (action.equals("delete")){
-            userService.deleteUser(phone);
+            userService.deleteUser(username);
         }
         return "redirect:/admin";
     }

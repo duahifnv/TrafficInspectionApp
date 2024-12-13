@@ -1,4 +1,4 @@
-package dstu.inspection.controller;
+package dstu.inspection.controller.inspect;
 
 import dstu.inspection.entity.Driver;
 import dstu.inspection.service.DriverService;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @Controller
 @RequestMapping("/inspect/driver")
 @RequiredArgsConstructor
-public class DriverController {
+public class InspectDriverController {
     private final DriverService driverService;
     @GetMapping()
     public ResponseEntity<?> getAllDrivers() {

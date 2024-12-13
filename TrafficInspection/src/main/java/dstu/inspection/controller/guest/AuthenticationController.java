@@ -1,4 +1,4 @@
-package dstu.inspection.controller;
+package dstu.inspection.controller.guest;
 
 import dstu.inspection.dto.UserDto;
 import dstu.inspection.entity.security.User;
@@ -33,7 +33,7 @@ public class AuthenticationController {
             return "pages/registration";
         }
         try {
-            User registeredUser = userService.save(userDto);
+            userService.save(userDto);
         }
         catch (UserAlreadyExistAuthenticationException e) {
             model.addAttribute("usernameError", e.getMessage());

@@ -6,12 +6,10 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 
 @Data
-public class LicenseDto {
-    @NotNull
+public class UserLicenseDto {
     @NotEmpty
     @Min(value = 1, message = "Код удостоверения должен быть ненулевым")
     private Long licenseId;
-    @NotNull
     @NotEmpty
     @Min(value = 1, message = "Код подразделения должен быть ненулевым")
     private Long departmentId;

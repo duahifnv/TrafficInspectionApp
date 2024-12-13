@@ -1,9 +1,8 @@
-package dstu.inspection.controller;
+package dstu.inspection.controller.user;
 
-import dstu.inspection.dto.LicenseDto;
+import dstu.inspection.dto.UserLicenseDto;
 import dstu.inspection.entity.License;
 import dstu.inspection.entity.Violation;
-import dstu.inspection.entity.info.LicensesInfo;
 import dstu.inspection.entity.info.VehiclesInfo;
 import dstu.inspection.entity.info.ViolationsInfo;
 import dstu.inspection.entity.security.User;
@@ -21,9 +20,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.temporal.Temporal;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -42,32 +38,32 @@ public class UserController {
     }
     @GetMapping("/license")
     public String licenseTab() {
-        return "pages/license";
+        return "pages/user/my_license";
     }
     @GetMapping("/license/new")
-    public String licensePage(Model model, HttpSession session) {
+    public String licenseForm(Model model, HttpSession session) {
         if (session.getAttribute("license") != null) {
             return "redirect:/me/license";
         }
-        model.addAttribute("license", new LicenseDto());
-        return "pages/license_form";
+        model.addAttribute("license", new UserLicenseDto());
+        return "pages/user/license_form";
     }
     @PostMapping("/license/new")
-    public String sendLicenseForm(@ModelAttribute @Valid LicenseDto licenseDto,
+    public String sendLicenseForm(@ModelAttribute @Valid UserLicenseDto userLicenseDto,
                                   BindingResult result, Model model,
                                   Principal principal, HttpSession session) {
         if (result.hasErrors()) {
-            return "pages/license_form";
+            return "pages/user/license_form";
         }
-        License license = licenseService.findById(licenseDto.getLicenseId());
+        License license = licenseService.findById(userLicenseDto.getLicenseId());
         if (license == null ||
-                !Objects.equals(license.getDepartmentId(), licenseDto.getDepartmentId())) {
+                !Objects.equals(license.getDepartmentId(), userLicenseDto.getDepartmentId())) {
             model.addAttribute("licenseError",
                     "Не найдено удостоверения с таким кодом или кодом подразделения");
-            return "pages/license_form";
+            return "pages/user/license_form";
         }
         Long licenseId = license.getLicenseId();
-        User user = userService.findByPhone(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         user.setLicenseId(licenseId);
         userService.updateUser(user);
         session.setAttribute("license", infoService.findLicenseInfoById(licenseId));
@@ -75,7 +71,7 @@ public class UserController {
     }
     @PostMapping("/license/delete")
     public String deleteLicense(Principal principal, HttpSession session) {
-        User user = userService.findByPhone(principal.getName());
+        User user = userService.findByUsername(principal.getName());
         if (user.getLicenseId() != null) {
             user.setLicenseId(null);
             userService.updateUser(user);
@@ -85,17 +81,17 @@ public class UserController {
     }
     @GetMapping("/vehicles")
     public String vehiclesTab(Model model, Principal principal) {
-        List<VehiclesInfo> userVehicles = infoService.findVehicleInfoByPhone(principal.getName());
+        List<VehiclesInfo> userVehicles = infoService.findVehicleInfoByUsername(principal.getName());
         model.addAttribute("vehicles",
                 userVehicles);
-        return "pages/vehicles";
+        return "pages/user/my_vehicles";
     }
     @GetMapping("/violations")
     public String violationsTab(Model model, Principal principal) {
-        List<ViolationsInfo> violations = infoService.findViolationsByPhone(principal.getName());
+        List<ViolationsInfo> violations = infoService.findViolationsByUsername(principal.getName());
         model.addAttribute("violations",
                 violations);
-        return "pages/violations";
+        return "pages/user/my_violations";
     }
     @PostMapping("/violations/{id}")
     public String payoffViolation(@PathVariable Long id) {
