@@ -17,5 +17,5 @@ public class UsersLicensesInfo {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "registration_code")
     private String registrationCode;
-    private String phone;
+    private String username;
 }

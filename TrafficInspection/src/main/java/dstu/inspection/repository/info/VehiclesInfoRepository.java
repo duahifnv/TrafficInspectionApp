@@ -9,10 +9,11 @@ import java.util.List;
 
 @Repository
 public interface VehiclesInfoRepository extends JpaRepository<VehiclesInfo, Long> {
+    VehiclesInfo findByRegistrationCode(String registrationCode);
     @Query("select info from VehiclesInfo info " +
             "inner join Certificate c on info.registrationCode = c.registrationCode" +
             " inner join License l on c.driverId = l.driverId" +
             " inner join User u on l.licenseId = u.licenseId" +
-            " where u.phone = ?1")
-    List<VehiclesInfo> findByPhone(String phone);
+            " where u.username = ?1")
+    List<VehiclesInfo> findByUsername(String username);
 }

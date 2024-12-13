@@ -19,7 +19,7 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
-    private String phone;
+    private String username;
     private String email;
     private String password;
     @Column(name = "license_id")
