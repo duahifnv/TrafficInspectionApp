@@ -56,6 +56,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
 
         Map<String, String> roleTargetUrlMap = new HashMap<>();
         roleTargetUrlMap.put("ROLE_USER", "/");
+        roleTargetUrlMap.put("ROLE_EMPLOYEE", "/inspect");
         roleTargetUrlMap.put("ROLE_ADMIN", "/");
 
         final Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
@@ -75,7 +76,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
     private void addLicenseInfo(HttpServletRequest request, Authentication authentication) {
-        LicensesInfo userLicense = infoService.findLicenseInfoByPhone(authentication.getName());
+        LicensesInfo userLicense = infoService.findLicenseInfoByUsername(authentication.getName());
         if (userLicense != null) {
             HttpSession session = request.getSession(false);
             session.setAttribute("license", userLicense);
