@@ -1,7 +1,8 @@
 *, *::before, *::after {
     box-sizing: border-box;
     margin: 0;
-    font-family: "Roboto", sans-serif;
+    /*font-family: "Roboto", sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
     font-style: normal;
     font-size: 1.4rem;
 }
@@ -9,6 +10,7 @@
     outline: none;
 }
 a, u {
+    color: black;
     text-decoration: none;
 }
 
@@ -72,6 +74,7 @@ input {
 }
 .main {
     height: 85vh;
+    overflow: hidden;
 }
 .wrapper {
     padding: 0.3em 1em;
@@ -120,12 +123,13 @@ input {
 }
 .reg_code {
     background-color: #d7d7d7;
-    font-family: 'Montserrat', sans-serif;
 }
 .category_code {
     background-color: black;
     color: white;
-    font-family: 'Montserrat', sans-serif;
+}
+.default_item {
+    background-color: #d7d7d7;
 }
 /* TO LICENSE.CSS */
 .license {
@@ -150,9 +154,6 @@ input {
 }
 .info_block {
     width: 100%;
-}
-.info_block > * {
-    font-family: "Montserrat", sans-serif;
 }
 .info_block label {
     font-size: 0.7em;

@@ -12,7 +12,6 @@
         <div class="container item">
             <div class="container" style="flex-direction: row; gap: 0.5em">
                 <p class="wrapper item_title reg_code" th:text="${vehicle.registrationCode}">REGISTRATION_CODE</p>
-
                 <p class="wrapper item_title category_code" th:text="${vehicle.categoryCode}">CATEGORY_CODE</p>
             </div>
             <p class="item_title" th:text="${vehicle.brandName}+' '
@@ -20,10 +19,7 @@
                                                 +${vehicle.manufactureYear}">CAR_NAME</p>
             <p class="item_description vin" th:text="'ВИН-номер: '+${vehicle.vin}">VIN</p>
             <p class="item_description" th:text="'Цвет: '+${vehicle.bodyColor}">BODY_COLOR</p>
-<!--            <p class="item_description" th:text="${vehicle.fullName}">FULL_NAME</p>-->
-            <p class="item_description date" th:text="'Дата регистрации: '+${vehicle.dateOfRegistration}">
-                DATE_OF_REGISTRATION
-            </p>
+            <p class="item_description date" th:text="'Дата регистрации: '+${vehicle.dateOfRegistration}">DATE_OF_REGISTRATION</p>
         </div>
     </th:block>
 </div>
