@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main" style="position: relative">
+    <div class="container nav_content">
+        <div class='label_container'>
+            <span class="h1">Новое нарушение</span>
+        </div>
+        <form class="container form_container" style="width: 50%"
+              th:action="@{/inspect/violations/new}" th:method="POST"
+              th:object="${violation}">
+            <div class="container input_container">
+                <label>Код удостоверения</label>
+                <div class="input_form">
+                    <input type="text" th:field="*{registrationCode}" placeholder="A 000 AA RUS 061">
+                </div>
+                <p th:each="error: ${#fields.errors('registrationCode')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Код штрафа</label>
+                <input type="number" th:field="*{fineId}" placeholder="0"/>
+                <p th:each="error: ${#fields.errors('fineId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Дата нарушения</label>
+                <input type="date" th:field="*{dateOfViolation}"
+                th:value="${#dates.createNow()}"/>
+                <p th:each="error: ${#fields.errors('dateOfViolation')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <button class="default_button" type="submit">Добавить</button>
+        </form>
+    </div>
+</main>
+<footer class="container footer" th:replace="~{components/footer :: footer}"></footer>
+</body>
+</html>

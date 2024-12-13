@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container list" th:fragment="violations">
+    <div th:if="${violations.isEmpty()}" style="display: flex; justify-content: center">
+        <p class="h1" style="color: gray">Нарушений нет</p>
+    </div>
+    <div th:unless="${violations.isEmpty()}">
+        <th:block th:each="violation: ${violations}">
+            <div class="container item">
+                <p class="wrapper item_title reg_code" th:text="${violation.registrationCode}">REGISTRATION_CODE</p>
+                <p class="item_title" th:text="${violation.description}">Заголовок</p>
+                <p class="wrapper item_description"
+                   style="background-color: #01002e; color: white; font-weight: 600"
+                   th:text="${violation.fineAmount} + ' ₽'">
+                </p>
+                <p class="item_description" th:text="'Нарушение: ' + ${violation.dateOfViolation}">Текст</p>
+                <p th:if="${violation.dateOfPayment != null}" class="item_description"
+                   style="font-weight: 600; color: #3e8e41"
+                   th:text="'Погашение: ' + ${violation.dateOfPayment}">Текст</p>
+                <div th:if="${violation.dateOfPayment == null}">
+                    <p class="item_description"
+                       style="font-weight: 600; color: maroon">Не погашено</p>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>
