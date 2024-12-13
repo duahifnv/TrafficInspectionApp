@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container list" th:fragment="licenses">
+    <div th:if="${licenses.isEmpty()}" style="display: flex; justify-content: center">
+        <p class="h1" style="color: gray">Удостоверений нет</p>
+    </div>
+    <div th:unless="${licenses.isEmpty()}">
+        <th:block th:each="license: ${licenses}">
+            <div class="container item">
+                <p class="wrapper item_title" style="background-color: black; color: white"
+                   th:text="${license.fullName}">
+                    ФИО
+                </p>
+                <p class="wrapper item_title" style="background-color: #cbb7b7"
+                   th:text="${license.dateOfBirth}">
+                    Дата рождения
+                </p>
+                <div class="container" style="flex-direction: row; gap: 0.5em">
+                    <p class="wrapper item_title" style="background-color: #000830; color: white"
+                       th:text="${license.departmentType}">
+                        Тип подразделения
+                    </p>
+                    <p class="wrapper item_title default_item" th:text="${license.registrationAddress}">
+                        Адрес регистрации
+                    </p>
+                </div>
+                <div class="container" style="flex-direction: row; gap: 0.5em">
+                    <p class="wrapper item_title default_item"
+                       th:text="'Выдан: ' + ${license.dateOfIssue}">
+                        Дата выдачи
+                    </p>
+                    <p class="wrapper item_title default_item"
+                       th:text="'Истекает: ' + ${license.dateOfExpiry}">
+                        Дата истекания
+                    </p>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+
+</body>
+</html>

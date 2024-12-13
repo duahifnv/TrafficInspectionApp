@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main" style="position: relative">
+    <div class="container nav_content">
+        <div class='label_container'>
+            <span class="h1">Новое удостоверение</span>
+        </div>
+        <form class="container form_container" style="width: 50%"
+              th:action="@{/inspect/licenses/new}" th:method="POST"
+              th:object="${license}">
+            <div class="container input_container">
+                <label>Код водителя</label>
+                <div class="input_form">
+                    <input type="number" th:field="*{driverId}" placeholder="0" id="driverId">
+                </div>
+                <p th:each="error: ${#fields.errors('driverId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Код подразделения</label>
+                <input type="number" th:field="*{departmentId}" placeholder="0" id="departmentId"/>
+                <p th:each="error: ${#fields.errors('departmentId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Дата выдачи</label>
+                <input type="date" th:field="*{dateOfIssue}"
+                th:value="${#dates.createNow()}" id="dateOfIssue"/>
+                <p th:each="error: ${#fields.errors('dateOfIssue')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Дата истечения</label>
+                <input type="date" th:field="*{dateOfExpiry}" id="dateOfExpiry"/>
+                <p th:each="error: ${#fields.errors('dateOfExpiry')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <button class="default_button" type="submit">Добавить</button>
+        </form>
+    </div>
+</main>
+<footer class="container footer" th:replace="~{components/footer :: footer}"></footer>
+</body>
+</html>
