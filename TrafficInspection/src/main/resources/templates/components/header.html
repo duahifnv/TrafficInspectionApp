@@ -40,6 +40,15 @@
         <a style="color: maroon" th:href="@{/logout}">Выход</a>
       </div>
     </div>
+    <div class="dropdown">
+      <a sec:authorize="hasRole('EMPLOYEE')" th:href="@{/inspect}" class="img_container">
+        <img src="/img/employee_icon_50.png" th:src='@{/img/employee_icon_50.png}' alt="Emp_Profile"/>
+      </a>
+      <div class="dropdown-content">
+        <a th:href="@{/inspect/licenses}">Все удостоверения</a>
+        <a th:href="@{/inspect/violations}">Все нарушения</a>
+      </div>
+    </div>
   </div>
 </header>
 </body>
