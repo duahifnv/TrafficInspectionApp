@@ -9,7 +9,7 @@ import lombok.Data;
 public class UserDto {
     @NotNull
     @NotEmpty
-    private String phone;
+    private String username;
     @NotNull
     @NotEmpty
     @ValidEmail(message = "Email должен соответствовать формату")
