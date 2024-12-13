@@ -12,4 +12,7 @@ public class LicenseService {
     public License findById(Long id) {
         return licenseRepository.findById(id).orElse(null);
     }
+    public License save(License license) {
+        return licenseRepository.save(license);
+    }
 }
