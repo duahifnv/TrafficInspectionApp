@@ -21,8 +21,8 @@
           th:object="${user}">
       <div class="container input_container">
         <label>Номер телефона</label>
-        <input th:field="*{phone}"/>
-        <p th:each="error: ${#fields.errors('phone')}"
+        <input th:field="*{username}"/>
+        <p th:each="error: ${#fields.errors('username')}"
            th:text="${error}">Validation error</p>
       </div>
       <div class="container input_container">
@@ -39,7 +39,9 @@
       </div>
       <button class="default_button" type="submit">Зарегистрироваться</button>
     </form>
-    <a th:href="@{/login}">Уже есть аккаунт?</a>
+    <a th:href="@{/login}">
+      <span class="item_title" style="font-size: smaller">Уже есть аккаунт?</span>
+    </a>
   </div>
 </div>
 </body>

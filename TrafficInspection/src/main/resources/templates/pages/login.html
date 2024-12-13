@@ -27,15 +27,18 @@
         </div>
         <form class="container form_container" th:action="@{/login}" method="post">
             <div class="container input_container">
-                <label for="phone_input">Номер телефона</label>
-                <input type="text" id="phone_input" name="username" placeholder="+7"/>
+                <label for="username_input">Номер телефона | Код сотрудника</label>
+                <input type="text" id="username_input" name="username"/>
             </div>
             <div class="container input_container">
-                <label for="phone_input">Пароль</label>
+                <label for="username_input">Пароль</label>
                 <input type="password" id="password_input" name="password"/>
             </div>
             <button class="default_button" type="submit">Войти</button>
         </form>
+        <a th:href="@{/registration}">
+            <span class="item_title" style="font-size: smaller">Еще нет аккаунта?</span>
+        </a>
     </div>
 </div>
 </body>
