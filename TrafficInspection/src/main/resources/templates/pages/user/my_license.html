@@ -12,6 +12,9 @@
     <div th:if="${license != null}" class="container nav_content">
         <div class='label_container'>
             <span class="h1">Мое удостоверение</span>
+            <a class="img_container" th:href="@{/me/license/pdf}">
+                <img src="/static/img/save-90.png" th:src='@{/img/save-90.png}' alt="Save"/>
+            </a>
         </div>
         <div class="container license" th:replace="~{components/license :: license}"></div>
         <form th:action="@{/me/license/delete}" method="post">

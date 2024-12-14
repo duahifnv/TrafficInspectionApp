@@ -15,6 +15,9 @@
       <a th:href="@{/inspect/violations/new}">
         <button type="submit" class="default_button">Новое нарушение</button>
       </a>
+      <a class="img_container" th:href="@{/inspect/violations/pdf}">
+        <img src="/static/img/save-90.png" th:src='@{/img/save-90.png}' alt="Save"/>
+      </a>
     </div>
     <div class="container list" th:replace="~{components/all_violations :: violations}"></div>
   </div>

@@ -12,6 +12,9 @@
   <div th:if="${license != null}" class="container nav_content">
     <div class='label_container'>
       <span class="h1">Мои нарушения</span>
+      <a class="img_container" th:href="@{/me/violations/pdf}">
+        <img src="/static/img/save-90.png" th:src='@{/img/save-90.png}' alt="Save"/>
+      </a>
     </div>
     <div class="container list" th:replace="~{components/my_violations :: violations}"></div>
   </div>
