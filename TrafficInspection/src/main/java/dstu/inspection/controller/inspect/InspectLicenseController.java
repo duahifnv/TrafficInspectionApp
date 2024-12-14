@@ -4,7 +4,6 @@ import dstu.inspection.dto.InspectLicenseDto;
 import dstu.inspection.dto.UserLicenseDto;
 import dstu.inspection.dto.ViolationDto;
 import dstu.inspection.entity.License;
-import dstu.inspection.entity.Person;
 import dstu.inspection.service.InfoService;
 import dstu.inspection.service.LicenseService;
 import jakarta.validation.Valid;
@@ -40,7 +39,7 @@ public class InspectLicenseController {
         return "pages/employee/new_license_form";
     }
     @PostMapping("/licenses/new")
-    public String sendLicenseForm(@ModelAttribute("license") @Valid InspectLicenseDto licenseDto,
+    public String putLicenseForm(@ModelAttribute("license") @Valid InspectLicenseDto licenseDto,
                                   BindingResult result, Model model) throws ParseException {
         if (result.hasErrors()) {
             return "pages/employee/new_license_form";
