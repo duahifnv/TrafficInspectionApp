@@ -50,7 +50,7 @@ public class InfoService {
     public LicensesInfo findLicenseInfoByUsername(String username) {
         return licensesInfoRepository.findByUsername(username);
     }
-    public List<VehiclesInfo> findAll() {
+    public List<VehiclesInfo> findAllVehicles() {
         return vehiclesInfoRepository.findAll();
     }
     public VehiclesInfo findVehicleInfoByRegistrationCode(String registrationCode) {
