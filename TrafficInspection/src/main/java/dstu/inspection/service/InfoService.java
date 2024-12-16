@@ -6,6 +6,7 @@ import dstu.inspection.entity.info.*;
 import dstu.inspection.repository.LicenseRepository;
 import dstu.inspection.repository.info.*;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -33,7 +34,7 @@ public class InfoService {
         return departmentInfoRepository.findAll();
     }
     public List<ViolationsInfo> findAllViolations() {
-        return violationsInfoRepository.findAll();
+        return violationsInfoRepository.findAll(Sort.by(Sort.Direction.ASC, "violationId"));
     }
     public List<ViolationsInfo> findViolationsByRegistrationCode(String registrationCode) {
         return violationsInfoRepository.findViolationsByRegistrationCode(registrationCode);

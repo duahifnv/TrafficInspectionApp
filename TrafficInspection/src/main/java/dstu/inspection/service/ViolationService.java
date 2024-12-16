@@ -15,4 +15,7 @@ public class ViolationService {
     public Violation save(Violation violation) {
         return violationRepository.save(violation);
     }
+    public void deleteById(Long id) {
+        violationRepository.deleteById(id);
+    }
 }

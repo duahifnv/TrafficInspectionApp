@@ -13,4 +13,7 @@ public class EmployeeService {
     public Employee findById(Long id) {
         return employeeRepository.findById(id).orElse(null);
     }
+    public Employee findByUsername(String username) {
+        return employeeRepository.findByUsername(username);
+    }
 }
