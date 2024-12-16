@@ -2,9 +2,8 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>TrafficApp_Login</title>
+    <title>Sign In</title>
     <link href="../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
-    <link href="../../static/css/login.css" th:href="@{/css/login.css}" rel="stylesheet">
 </head>
 <body>
 <div class="container main_outer">
@@ -18,10 +17,10 @@
             <h1>Войти в аккаунт</h1>
         </div>
         <div class="container info_container">
-            <div class="container message_container" id="error_message" th:if="${param.error}">
+            <div class="container message_container error_message" th:if="${param.error}">
                 <span>Неверные логин или пароль</span>
             </div>
-            <div class="container message_container" id="logout_message" th:if="${param.logout}">
+            <div class="container message_container logout_message" th:if="${param.logout}">
                 <span>Вы вышли из аккаунта</span>
             </div>
         </div>

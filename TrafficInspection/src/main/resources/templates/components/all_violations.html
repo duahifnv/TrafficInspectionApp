@@ -19,12 +19,28 @@
                    th:text="${violation.fineAmount} + ' ₽'">
                 </p>
                 <p class="item_description" th:text="'Нарушение: ' + ${violation.dateOfViolation}">Текст</p>
-                <p th:if="${violation.dateOfPayment != null}" class="item_description"
-                   style="font-weight: 600; color: #3e8e41"
-                   th:text="'Погашение: ' + ${violation.dateOfPayment}">Текст</p>
+                <div th:if="${violation.dateOfPayment != null}">
+                    <p class="item_description"
+                       style="font-weight: 600; color: #3e8e41"
+                       th:text="'Погашение: ' + ${violation.dateOfPayment}"></p>
+                    <form th:action="@{|/inspect/violations/edit/${violation.violationId}|}" method="get"
+                    style="margin-bottom: 0.5em">
+                        <button type="submit" class="default_button"  style="background-color: gray">Изменить нарушение</button>
+                    </form>
+                    <form th:action="@{|/inspect/violations/${violation.violationId}|}" method="post">
+                        <button type="submit" class="default_button" style="background-color: maroon;">Удалить нарушение</button>
+                    </form>
+                </div>
                 <div th:if="${violation.dateOfPayment == null}">
                     <p class="item_description"
                        style="font-weight: 600; color: maroon">Не погашено</p>
+                    <form th:action="@{|/inspect/violations/edit/${violation.violationId}|}" method="get"
+                          style="margin-bottom: 0.5em">
+                        <button type="submit" class="default_button" style="background-color: gray">Изменить нарушение</button>
+                    </form>
+                    <form th:action="@{|/inspect/violations/${violation.violationId}|}" method="post">
+                        <button type="submit" class="default_button" style="background-color: maroon;">Удалить нарушение</button>
+                    </form>
                 </div>
             </div>
         </th:block>

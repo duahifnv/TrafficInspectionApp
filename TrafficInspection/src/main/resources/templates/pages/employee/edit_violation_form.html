@@ -11,33 +11,50 @@
 <main class="container main" style="position: relative">
     <div class="container nav_content">
         <div class='label_container'>
-            <span class="h1">Новое нарушение</span>
+            <span class="h1">Изменить нарушение</span>
         </div>
         <form class="container form_container" style="width: 50%"
-              th:action="@{/inspect/violations/new}" th:method="POST"
-              th:object="${violationDto}">
+              th:object="${violationDto}"
+              th:action="@{|/inspect/violations/edit/${violationDto.violationId}|}" th:method="POST">
+            <div class="container input_container">
+                <label>Код нарушения</label>
+                <div class="input_form">
+                    <input type="number" th:field="*{violationId}"
+                           th:value="${violationDto.violationId}" disabled>
+                </div>
+                <p th:each="error: ${#fields.errors('violationId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
             <div class="container input_container">
                 <label>Код удостоверения</label>
                 <div class="input_form">
-                    <input type="text" th:field="*{registrationCode}" placeholder="A 000 AA RUS 061">
+                    <input type="text" th:field="*{registrationCode}" placeholder="A 000 AA RUS 061"
+                    th:value="${violationDto.registrationCode}">
                 </div>
                 <p th:each="error: ${#fields.errors('registrationCode')}"
                    th:text="${error}">Validation error</p>
             </div>
             <div class="container input_container">
                 <label>Код штрафа</label>
-                <input type="number" th:field="*{fineId}" placeholder="0"/>
+                <input type="number" th:field="*{fineId}" placeholder="0" th:value="${violationDto.fineId}"/>
                 <p th:each="error: ${#fields.errors('fineId')}"
                    th:text="${error}">Validation error</p>
             </div>
             <div class="container input_container">
                 <label>Дата нарушения</label>
                 <input type="date" th:field="*{dateOfViolation}"
-                th:value="${#dates.createNow()}"/>
+                th:value="${violationDto.dateOfViolation}"/>
                 <p th:each="error: ${#fields.errors('dateOfViolation')}"
                    th:text="${error}">Validation error</p>
             </div>
-            <button class="default_button" type="submit">Добавить</button>
+            <div class="container input_container">
+                <label>Дата погашения</label>
+                <input type="date" th:field="*{dateOfPayment}"
+                       th:value="${violationDto.dateOfPayment}"/>
+                <p th:each="error: ${#fields.errors('dateOfPayment')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <button class="default_button" type="submit">Изменить</button>
         </form>
     </div>
 </main>

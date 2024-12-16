@@ -5,6 +5,14 @@
   <title></title>
 </head>
 <body>
-  <footer class="container footer" th:fragment="footer"></footer>
+<footer class="container footer" th:fragment="footer">
+  <a class="img_container footer_icon" href="https://github.com/duahifnv/TrafficInspectionApp">
+    <img src="/static/img/github.png" th:src='@{/img/github.png}' alt="Project github"/>
+  </a>
+  <a class="img_container footer_icon" href="https://t.me/fizalise">
+    <img src="/static/img/telegram.png" th:src='@{/img/telegram.png}' alt="My tg"/>
+  </a>
+  <p class="footer text">Проект для курсовой работы. <b>2024.</b></p>
+</footer>
 </body>
 </html>

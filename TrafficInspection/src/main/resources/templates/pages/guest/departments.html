@@ -13,6 +13,9 @@
         <div class='label_container'>
             <span class="h1">Подразделения ГИБДД</span>
             <span class="h2">Ростовская Область</span>
+            <a class="img_container" th:href="@{/departments/pdf}">
+                <img src="/static/img/save-90.png" th:src='@{/img/save-90.png}' alt="Save"/>
+            </a>
         </div>
         <div class="container list">
             <th:block th:each="department: ${departments}">

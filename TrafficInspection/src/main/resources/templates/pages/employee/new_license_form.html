@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>TrafficApp</title>
@@ -15,7 +15,12 @@
         </div>
         <form class="container form_container" style="width: 50%"
               th:action="@{/inspect/licenses/new}" th:method="POST"
-              th:object="${license}">
+              th:object="${licenseDto}">
+            <div class="container info_container" th:if="${#fields.hasGlobalErrors()}">
+                <div class="container message_container error_message" th:each="error: ${#fields.globalErrors}">
+                    <span th:text="${error}">Общая ошибка</span>
+                </div>
+            </div>
             <div class="container input_container">
                 <label>Код водителя</label>
                 <div class="input_form">
