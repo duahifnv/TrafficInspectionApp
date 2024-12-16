@@ -1,6 +1,6 @@
 package dstu.inspection.controller.user;
 
-import dstu.inspection.dto.UserLicenseDto;
+import dstu.inspection.dto.user.LicenseDto;
 import dstu.inspection.entity.License;
 import dstu.inspection.entity.Violation;
 import dstu.inspection.entity.info.VehiclesInfo;
@@ -45,19 +45,19 @@ public class UserController {
         if (session.getAttribute("license") != null) {
             return "redirect:/me/license";
         }
-        model.addAttribute("license", new UserLicenseDto());
+        model.addAttribute("license", new LicenseDto());
         return "pages/user/license_form";
     }
     @PostMapping("/license/new")
-    public String sendLicenseForm(@ModelAttribute @Valid UserLicenseDto userLicenseDto,
+    public String sendLicenseForm(@ModelAttribute @Valid LicenseDto licenseDto,
                                   BindingResult result, Model model,
                                   Principal principal, HttpSession session) {
         if (result.hasErrors()) {
             return "pages/user/license_form";
         }
-        License license = licenseService.findById(userLicenseDto.getLicenseId());
+        License license = licenseService.findById(licenseDto.getLicenseId());
         if (license == null ||
-                !Objects.equals(license.getDepartmentId(), userLicenseDto.getDepartmentId())) {
+                !Objects.equals(license.getDepartmentId(), licenseDto.getDepartmentId())) {
             model.addAttribute("licenseError",
                     "Не найдено удостоверения с таким кодом или кодом подразделения");
             return "pages/user/license_form";

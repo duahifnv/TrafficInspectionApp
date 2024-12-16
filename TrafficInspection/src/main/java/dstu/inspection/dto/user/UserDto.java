@@ -1,4 +1,4 @@
-package dstu.inspection.dto;
+package dstu.inspection.dto.user;
 
 import dstu.inspection.validation.ValidEmail;
 import jakarta.validation.constraints.NotEmpty;

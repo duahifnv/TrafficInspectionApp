@@ -15,7 +15,7 @@ import static java.lang.annotation.ElementType.*;
 @Constraint(validatedBy = EmailValidator.class)
 @Documented
 public @interface ValidEmail {
-    String message() default "Invalid email";
+    String message() default "Email должен соответствовать шаблону";
     Class<?>[] groups() default {};
     Class<? extends Payload>[] payload() default {};
 }

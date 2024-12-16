@@ -1,9 +1,8 @@
 package dstu.inspection.controller.guest;
 
-import dstu.inspection.dto.UserDto;
-import dstu.inspection.entity.security.User;
+import dstu.inspection.dto.user.UserDto;
 import dstu.inspection.service.UserService;
-import dstu.inspection.validation.UserAlreadyExistAuthenticationException;
+import dstu.inspection.service.UserAlreadyExistAuthenticationException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
