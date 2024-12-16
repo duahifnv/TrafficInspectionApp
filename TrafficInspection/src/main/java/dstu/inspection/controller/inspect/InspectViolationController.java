@@ -3,6 +3,8 @@ package dstu.inspection.controller.inspect;
 import dstu.inspection.dto.ViolationDto;
 import dstu.inspection.entity.Violation;
 import dstu.inspection.entity.info.VehiclesInfo;
+import dstu.inspection.entity.info.ViolationsInfo;
+import dstu.inspection.mapper.ViolationMapper;
 import dstu.inspection.service.InfoService;
 import dstu.inspection.service.ViolationService;
 import jakarta.validation.Valid;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.text.DateFormat;
@@ -23,6 +26,7 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class InspectViolationController {
     private final ViolationService violationService;
+    private final ViolationMapper violationMapper;
     private final InfoService infoService;
     @GetMapping
     public String landingPage() {
@@ -34,13 +38,12 @@ public class InspectViolationController {
         return "pages/employee/all_violations";
     }
     @GetMapping("/violations/new")
-    public String newViolationForm(Model model) {
-        model.addAttribute("violation", new ViolationDto());
+    public String newViolationForm(ViolationDto violationDto) {
         return "pages/employee/new_violation_form";
     }
     @PostMapping("/violations/new")
-    public String sendViolationForm(@ModelAttribute(name = "violation") @Valid ViolationDto violationDto,
-                                    BindingResult result, Model model) throws ParseException {
+    public String sendViolationForm(@Validated ViolationDto violationDto,
+                                    BindingResult result) {
         if (result.hasErrors()) {
             return "pages/employee/new_violation_form";
         }
@@ -51,18 +54,35 @@ public class InspectViolationController {
             FieldError error = new FieldError("violation",
                     "registrationCode", errorMessage);
             result.addError(error);
-            model.addAttribute("violation", new ViolationDto());
             return "pages/employee/new_violation_form";
         }
-        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        Date dateOfViolation = dateFormat.parse(violationDto.getDateOfViolation());
-        Violation violation = Violation.builder()
-                                        .registrationCode(violationDto.getRegistrationCode())
-                                        .fineId(violationDto.getFineId())
-                                        .dateOfViolation(dateOfViolation)
-                                        .build();
+        Violation violation = violationMapper.dtoToModel(violationDto);
         violationService.save(violation);
         return "redirect:/inspect/violations";
     }
-
+    @GetMapping("/violations/edit/{id}")
+    public String violationEditForm(@PathVariable Long id, Model model) {
+        Violation violation = violationService.findById(id);
+        if (violation == null) {
+            return "redirect:/inspect/violations";
+        }
+        ViolationDto violationDto = violationMapper.modelToDto(violation);
+        model.addAttribute("violationDto", violationDto);
+        return "pages/employee/edit_violation_form";
+    }
+    @PostMapping("/violations/edit/{id}")
+    public String sendViolationEditForm(@Validated ViolationDto violationDto,
+                                        @PathVariable Long id) {
+        Violation violation = violationMapper.dtoToModel(violationDto);
+        violation.setViolationId(id);
+        violationService.save(violation);
+        return "redirect:/inspect/violations";
+    }
+    @PostMapping("/violations/{id}")
+    public String  deleteViolation(@PathVariable Long id) {
+        if (violationService.findById(id) != null) {
+            violationService.deleteById(id);
+        }
+        return "redirect:/inspect/violations";
+    }
 }
