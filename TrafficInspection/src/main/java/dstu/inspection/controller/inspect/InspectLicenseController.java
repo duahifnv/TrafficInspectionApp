@@ -1,19 +1,16 @@
 package dstu.inspection.controller.inspect;
 
-import dstu.inspection.dto.InspectLicenseDto;
-import dstu.inspection.dto.UserLicenseDto;
-import dstu.inspection.dto.ViolationDto;
+import dstu.inspection.dto.inspect.LicenseDto;
 import dstu.inspection.entity.License;
 import dstu.inspection.service.InfoService;
 import dstu.inspection.service.LicenseService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -34,27 +31,18 @@ public class InspectLicenseController {
         return "pages/employee/all_licenses";
     }
     @GetMapping("/licenses/new")
-    public String newLicenseForm(Model model) {
-        model.addAttribute("license", new InspectLicenseDto());
+    public String newLicenseForm(LicenseDto licenseDto) {
         return "pages/employee/new_license_form";
     }
     @PostMapping("/licenses/new")
-    public String putLicenseForm(@ModelAttribute("license") @Valid InspectLicenseDto licenseDto,
-                                  BindingResult result, Model model) throws ParseException {
+    public String putLicenseForm(@Validated LicenseDto licenseDto,
+                                  BindingResult result) throws ParseException {
         if (result.hasErrors()) {
             return "pages/employee/new_license_form";
         }
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         Date dateOfIssue = dateFormat.parse(licenseDto.getDateOfIssue());
         Date dateOfExpiry = dateFormat.parse(licenseDto.getDateOfExpiry());
-        if (dateOfIssue.after(dateOfExpiry)) {
-            String errorMessage = "Дата регистрации не может быть позже даты истечения";
-            FieldError error = new FieldError("license",
-                    "dateOfIssue", errorMessage);
-            result.addError(error);
-            model.addAttribute("license", new InspectLicenseDto());
-            return "pages/employee/new_license_form";
-        }
         License license = License.builder()
                 .driverId(licenseDto.getDriverId())
                 .departmentId(licenseDto.getDepartmentId())
