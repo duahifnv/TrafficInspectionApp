@@ -66,7 +66,7 @@ input {
     background-color: #e5e5e5;
     padding: 0;
 }
-.container {
+.container, select {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -231,4 +231,11 @@ input {
 }
 .logout_message {
     background-color: black;
+}
+select {
+    padding: 0.2em;
+    font-size: 0.8em;
+}
+select option {
+    font-size: 0.8em;
 }
