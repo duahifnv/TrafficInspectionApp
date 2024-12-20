@@ -12,6 +12,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 @DatePeriod(startDate = "dateOfIssue", endDate = "dateOfExpiry")
 @Data
 public class LicenseDto {
+    private Long licenseId;
     @NotNull(message = "Заполните поле")
     @Min(value = 1, message = "Код водителя должен быть больше нуля")
     private Long driverId;

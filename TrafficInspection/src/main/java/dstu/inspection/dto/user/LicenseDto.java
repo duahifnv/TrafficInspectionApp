@@ -7,10 +7,10 @@ import lombok.Data;
 
 @Data
 public class LicenseDto {
-    @NotNull
+    @NotNull(message = "не должен быть пустым")
     @Min(value = 1, message = "Код удостоверения должен быть больше нуля")
     private Long licenseId;
-    @NotNull
+    @NotNull(message = "не должен быть пустым")
     @Min(value = 1, message = "Код подразделения должен быть больше нуля")
     private Long departmentId;
 }
