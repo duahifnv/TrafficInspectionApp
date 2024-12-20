@@ -12,6 +12,8 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
@@ -21,13 +23,11 @@ public class AuthenticationController {
             new SecurityContextLogoutHandler();
     private final UserService userService;
     @GetMapping("/registration")
-    public String registrationPage(Model model) {
-        model.addAttribute("user", new UserDto());
+    public String registrationPage(UserDto userDto) {
         return "pages/registration";
     }
     @PostMapping("/registration")
-    public String sendRegistrationForm(@ModelAttribute("user") @Valid UserDto userDto,
-                                     BindingResult result, Model model) {
+    public String sendRegistrationForm(@Validated UserDto userDto, BindingResult result) {
         if (result.hasErrors()) {
             return "pages/registration";
         }
@@ -35,7 +35,9 @@ public class AuthenticationController {
             userService.save(userDto);
         }
         catch (UserAlreadyExistAuthenticationException e) {
-            model.addAttribute("usernameError", e.getMessage());
+            FieldError error = new FieldError("userDto",
+                    "username", e.getMessage());
+            result.addError(error);
             return "pages/registration";
         }
         return "redirect:/login";

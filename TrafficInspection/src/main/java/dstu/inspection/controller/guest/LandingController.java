@@ -7,6 +7,7 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import dstu.inspection.entity.info.CategoriesInfo;
 import dstu.inspection.service.InfoService;
+import dstu.inspection.service.LicenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.InputStreamResource;
@@ -66,6 +67,11 @@ public class LandingController {
     @GetMapping("/getFines")
     public String violationList(@RequestParam("code")
                                     String registrationCode, Model model) {
+        if (infoService.findVehicleInfoByRegistrationCode(registrationCode) == null) {
+            String errorMessage = "Не найдено ТС с номером " + registrationCode;
+            model.addAttribute("registrationCodeError", errorMessage);
+            return "pages/guest/landing";
+        }
         model.addAttribute("registrationCode", registrationCode);
         model.addAttribute("violations",
                 infoService.findViolationsByRegistrationCode(registrationCode));
