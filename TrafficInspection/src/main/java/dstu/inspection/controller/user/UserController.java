@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
@@ -41,25 +43,29 @@ public class UserController {
         return "pages/user/my_license";
     }
     @GetMapping("/license/new")
-    public String licenseForm(Model model, HttpSession session) {
+    public String licenseForm(LicenseDto licenseDto, HttpSession session, Model model) {
         if (session.getAttribute("license") != null) {
             return "redirect:/me/license";
         }
-        model.addAttribute("license", new LicenseDto());
+        model.addAttribute("departmentList", infoService.findAllDepartments());
         return "pages/user/license_form";
     }
     @PostMapping("/license/new")
-    public String sendLicenseForm(@ModelAttribute @Valid LicenseDto licenseDto,
+    public String sendLicenseForm(@Validated LicenseDto licenseDto,
                                   BindingResult result, Model model,
                                   Principal principal, HttpSession session) {
         if (result.hasErrors()) {
+            model.addAttribute("departmentList", infoService.findAllDepartments());
             return "pages/user/license_form";
         }
         License license = licenseService.findById(licenseDto.getLicenseId());
         if (license == null ||
                 !Objects.equals(license.getDepartmentId(), licenseDto.getDepartmentId())) {
-            model.addAttribute("licenseError",
-                    "Не найдено удостоверения с таким кодом или кодом подразделения");
+            String errorMessage = "Не найдено удостоверения с такими данными";
+            FieldError error = new FieldError("licenseDto",
+                    "licenseId", errorMessage);
+            result.addError(error);
+            model.addAttribute("departmentList", infoService.findAllDepartments());
             return "pages/user/license_form";
         }
         Long licenseId = license.getLicenseId();

@@ -12,6 +12,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -38,22 +39,25 @@ public class InspectViolationController {
         return "pages/employee/all_violations";
     }
     @GetMapping("/violations/new")
-    public String newViolationForm(ViolationDto violationDto) {
+    public String newViolationForm(ViolationDto violationDto, Model model) {
+        model.addAttribute("fineList", infoService.findAllFines());
         return "pages/employee/new_violation_form";
     }
     @PostMapping("/violations/new")
     public String sendViolationForm(@Validated ViolationDto violationDto,
-                                    BindingResult result) {
+                                    BindingResult result, Model model) {
         if (result.hasErrors()) {
+            model.addAttribute("fineList", infoService.findAllFines());
             return "pages/employee/new_violation_form";
         }
         String registrationCode = violationDto.getRegistrationCode();
         VehiclesInfo vehicle = infoService.findVehicleInfoByRegistrationCode(registrationCode);
         if (vehicle == null) {
             String errorMessage = "Не найдено ТС с номером: " + registrationCode;
-            FieldError error = new FieldError("violation",
+            FieldError error = new FieldError("violationDto",
                     "registrationCode", errorMessage);
             result.addError(error);
+            model.addAttribute("fineList", infoService.findAllFines());
             return "pages/employee/new_violation_form";
         }
         Violation violation = violationMapper.dtoToModel(violationDto);
@@ -68,18 +72,25 @@ public class InspectViolationController {
         }
         ViolationDto violationDto = violationMapper.modelToDto(violation);
         model.addAttribute("violationDto", violationDto);
+        model.addAttribute("vehicleList", infoService.findAllVehicles());
+        model.addAttribute("fineList", infoService.findAllFines());
         return "pages/employee/edit_violation_form";
     }
     @PostMapping("/violations/edit/{id}")
-    public String sendViolationEditForm(@Validated ViolationDto violationDto,
-                                        @PathVariable Long id) {
+    public String sendViolationEditForm(@Validated ViolationDto violationDto, BindingResult result,
+                                        @PathVariable Long id, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("vehicleList", infoService.findAllVehicles());
+            model.addAttribute("fineList", infoService.findAllFines());
+            return "pages/employee/edit_violation_form";
+        }
         Violation violation = violationMapper.dtoToModel(violationDto);
         violation.setViolationId(id);
         violationService.save(violation);
         return "redirect:/inspect/violations";
     }
     @PostMapping("/violations/{id}")
-    public String  deleteViolation(@PathVariable Long id) {
+    public String deleteViolation(@PathVariable Long id) {
         if (violationService.findById(id) != null) {
             violationService.deleteById(id);
         }
