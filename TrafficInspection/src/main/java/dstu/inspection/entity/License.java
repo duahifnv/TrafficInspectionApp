@@ -24,7 +24,9 @@ public class License {
     @Column(name = "department_id")
     private Long departmentId;
     @Column(name = "date_of_issue")
+    @Temporal(TemporalType.DATE)
     private Date dateOfIssue;
     @Column(name = "date_of_expiry")
+    @Temporal(TemporalType.DATE)
     private Date dateOfExpiry;
 }
