@@ -11,8 +11,6 @@ import java.util.List;
 
 @Repository
 public interface ViolationsInfoRepository extends JpaRepository<ViolationsInfo, Long> {
-    @Override
-    List<ViolationsInfo> findAll(Sort sort);
     List<ViolationsInfo> findViolationsByRegistrationCode(String registrationCode);
     @Query("select info from ViolationsInfo info " +
             "inner join UsersLicensesInfo u on info.registrationCode = u.registrationCode " +

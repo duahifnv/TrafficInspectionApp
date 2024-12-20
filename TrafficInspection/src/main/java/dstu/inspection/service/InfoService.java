@@ -43,7 +43,7 @@ public class InfoService {
         return violationsInfoRepository.findViolationsByUsername(username);
     }
     public List<LicensesInfo> findAllLicenseInfos() {
-        return licensesInfoRepository.findAll();
+        return licensesInfoRepository.findAll(Sort.by(Sort.Direction.ASC, "fullName"));
     }
     public LicensesInfo findLicenseInfoById(Long id) {
         return licensesInfoRepository.findById(id).orElse(null);
