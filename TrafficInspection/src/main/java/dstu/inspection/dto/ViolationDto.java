@@ -1,5 +1,6 @@
 package dstu.inspection.dto;
 
+import dstu.inspection.validation.DatePeriod;
 import jakarta.persistence.*;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
@@ -8,6 +9,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
+@DatePeriod(startDate = "dateOfViolation", endDate = "dateOfPayment")
 @Data
 @Builder
 public class ViolationDto {

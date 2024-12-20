@@ -35,17 +35,19 @@ public class DatePeriodValidator implements ConstraintValidator<DatePeriod, Obje
             startField.setAccessible(true);
             endField.setAccessible(true);
 
-            if (startField.get(obj) == null || endField.get(obj) == null) {
+            if (startField.get(obj) == null ||
+                endField.get(obj) == null ||
+                startField.get(obj).toString().isBlank() ||
+                endField.get(obj).toString().isBlank()) {
                 return true;
             }
             DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
             Date startDate = dateFormat.parse((String) startField.get(obj));
             Date endDate = dateFormat.parse((String) endField.get(obj));
-            return startDate.before(endDate);
+            return !startDate.after(endDate);
         }
         catch (Exception e) {
-            System.out.println("@DatePeriod: " + e.getMessage());
-            return false;
+            throw new RuntimeException("@DatePeriod: " + e.getMessage());
         }
     }
 }
