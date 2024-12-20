@@ -10,6 +10,11 @@
 <header th:replace="~{components/header :: header}"></header>
 <main class="container main">
   <div class='container content'>
+    <div class="container back_container">
+      <a class="img_container" th:href="@{/}">
+        <img src="/static/img/back_button.png" th:src='@{/img/back_button.png}' alt="Back"/>
+      </a>
+    </div>
     <div class='label_container'>
       <span class="h1" th:text="'Нарушения по номеру ' + ${registrationCode}">Нарушения</span>
     </div>

@@ -10,12 +10,22 @@
 <header th:replace="~{components/header :: header}"></header>
 <main class="container main" style="position: relative">
     <div class="container nav_content">
+        <div class="container back_container">
+            <a class="img_container" th:href="@{/inspect/violations}">
+                <img src="/static/img/back_button.png" th:src='@{/img/back_button.png}' alt="Back"/>
+            </a>
+        </div>
         <div class='label_container'>
             <span class="h1">Новое нарушение</span>
         </div>
         <form class="container form_container" style="width: 50%"
               th:action="@{/inspect/violations/new}" th:method="POST"
               th:object="${violationDto}">
+            <div class="container info_container" th:if="${#fields.hasGlobalErrors()}">
+                <div class="container message_container error_message" th:each="error: ${#fields.globalErrors}">
+                    <span th:text="${error}">Общая ошибка</span>
+                </div>
+            </div>
             <div class="container input_container">
                 <label>Код удостоверения</label>
                 <div class="input_form">
@@ -25,15 +35,20 @@
                    th:text="${error}">Validation error</p>
             </div>
             <div class="container input_container">
-                <label>Код штрафа</label>
-                <input type="number" th:field="*{fineId}" placeholder="0"/>
+                <label>Вид штрафа</label>
+                <select th:field="*{fineId}" class="select">
+                    <option th:each="i : ${#numbers.sequence(1, fineList.size())}"
+                            th:value="${i}"
+                            th:text="${fineList.get(i - 1).description}"
+                            th:selected="${i==1}"></option>
+                </select>
                 <p th:each="error: ${#fields.errors('fineId')}"
                    th:text="${error}">Validation error</p>
             </div>
             <div class="container input_container">
                 <label>Дата нарушения</label>
                 <input type="date" th:field="*{dateOfViolation}"
-                th:value="${#dates.createNow()}"/>
+                th:value="${#calendars.format(#calendars.createNow(), 'dd MMM yyyy HH:mm')}"/>
                 <p th:each="error: ${#fields.errors('dateOfViolation')}"
                    th:text="${error}">Validation error</p>
             </div>

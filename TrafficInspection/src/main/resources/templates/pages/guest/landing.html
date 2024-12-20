@@ -18,6 +18,11 @@
             <input type="text" name="code" id="code" placeholder="A 000 AA RUS 061">
             <button type="submit" class="default_button">Узнать</button>
         </form>
+        <div class="container info_container" th:if="${registrationCodeError != null}">
+            <div class="container message_container error_message">
+                <span th:text="${registrationCodeError}">Общая ошибка</span>
+            </div>
+        </div>
     </div>
     <div class="img_container landing_container">
         <img src="/static/img/landing_car.png" th:src='@{/img/landing_car.png}' alt="Emp_Profile"/>

@@ -17,9 +17,9 @@
       <h1>Регистрация</h1>
     </div>
     <form class="container form_container" th:action="@{/registration}" method="post"
-          th:object="${user}">
+          th:object="${userDto}">
       <div class="container input_container">
-        <label>Номер телефона</label>
+        <label>Username</label>
         <input th:field="*{username}"/>
         <p th:each="error: ${#fields.errors('username')}"
            th:text="${error}">Validation error</p>

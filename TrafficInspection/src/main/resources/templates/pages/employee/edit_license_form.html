@@ -16,34 +16,43 @@
             </a>
         </div>
         <div class='label_container'>
-            <span class="h1">Новое удостоверение</span>
+            <span class="h1">Изменить удостоверение</span>
         </div>
         <form class="container form_container" style="width: 50%"
-              th:action="@{/inspect/licenses/new}" th:method="POST"
-              th:object="${licenseDto}">
+              th:object="${licenseDto}"
+              th:action="@{|/inspect/licenses/edit/${licenseDto.licenseId}|}" th:method="POST">
             <div class="container info_container" th:if="${#fields.hasGlobalErrors()}">
                 <div class="container message_container error_message" th:each="error: ${#fields.globalErrors}">
                     <span th:text="${error}">Общая ошибка</span>
                 </div>
             </div>
             <div class="container input_container">
+                <label>Код удостоверения</label>
+                <div class="input_form">
+                    <input type="number" th:field="*{licenseId}"
+                           th:value="${licenseDto.licenseId}" readonly>
+                </div>
+                <p th:each="error: ${#fields.errors('licenseId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
                 <label>Водитель</label>
-                <select th:field="*{driverId}" class="select">
+                <select th:field="*{driverId}" class="input_form">
                     <option th:each="driver : ${driverList}"
                             th:value="${driver.driverId}"
-                            th:text="${driver.fullName} + ' | '
-                             + ${driver.registrationAddress}"></option>
+                            th:text="${driver.fullName} + ' | ' + ${driver.registrationAddress}"
+                            th:selected="${licenseDto.driverId}"></option>
                 </select>
                 <p th:each="error: ${#fields.errors('driverId')}"
                    th:text="${error}">Validation error</p>
             </div>
             <div class="container input_container">
                 <label>Подразделение</label>
-                <select th:field="*{departmentId}" class="select">
+                <select th:field="*{departmentId}">
                     <option th:each="department : ${departmentList}"
                             th:value="${department.departmentId}"
-                            th:text="${department.departmentType} + ' | '
-                            + ${department.departmentLocation}"></option>
+                            th:text="${department.departmentType} + ' | ' + ${department.departmentLocation}"
+                            th:selected="${licenseDto.departmentId}"></option>
                 </select>
                 <p th:each="error: ${#fields.errors('departmentId')}"
                    th:text="${error}">Validation error</p>
@@ -51,17 +60,18 @@
             <div class="container input_container">
                 <label>Дата выдачи</label>
                 <input type="date" th:field="*{dateOfIssue}"
-                th:value="${#dates.createNow()}" id="dateOfIssue"/>
+                th:value="${licenseDto.dateOfIssue}"/>
                 <p th:each="error: ${#fields.errors('dateOfIssue')}"
                    th:text="${error}">Validation error</p>
             </div>
             <div class="container input_container">
                 <label>Дата истечения</label>
-                <input type="date" th:field="*{dateOfExpiry}" id="dateOfExpiry"/>
+                <input type="date" th:field="*{dateOfExpiry}"
+                th:value="${licenseDto.dateOfExpiry}"/>
                 <p th:each="error: ${#fields.errors('dateOfExpiry')}"
                    th:text="${error}">Validation error</p>
             </div>
-            <button class="default_button" type="submit">Добавить</button>
+            <button class="default_button" type="submit">Изменить</button>
         </form>
     </div>
 </main>

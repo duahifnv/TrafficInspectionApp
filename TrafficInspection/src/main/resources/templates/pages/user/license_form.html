@@ -10,11 +10,21 @@
 <header th:replace="~{components/header :: header}"></header>
 <main class="container main">
   <div class='container content'>
+    <div class="container back_container">
+      <a class="img_container" th:href="@{/me/license}">
+        <img src="/static/img/back_button.png" th:src='@{/img/back_button.png}' alt="Back"/>
+      </a>
+    </div>
     <div class='label_container'>
       <span class="h1">Добавить удостоверение</span>
     </div>
     <form class="container form_container" style="width: 50%" th:action="@{/me/license/new}" method="post"
-          th:object="${license}">
+          th:object="${licenseDto}">
+      <div class="container info_container" th:if="${#fields.hasGlobalErrors()}">
+        <div class="container message_container error_message" th:each="error: ${#fields.globalErrors}">
+          <span th:text="${error}">Общая ошибка</span>
+        </div>
+      </div>
       <div class="container input_container">
         <label>Код удостоверения</label>
         <input type="number" th:field="*{licenseId}" placeholder="0"/>
@@ -22,8 +32,12 @@
            th:text="${error}">Validation error</p>
       </div>
       <div class="container input_container">
-        <label>Код подразделения</label>
-        <input type="number" th:field="*{departmentId}" placeholder="0"/>
+        <label>Подразделение</label>
+        <select th:field="*{departmentId}">
+          <option th:each="department : ${departmentList}"
+                  th:value="${department.departmentId}"
+                  th:text="${department.departmentType} + ' | ' + ${department.departmentLocation}"></option>
+        </select>
         <p th:each="error: ${#fields.errors('departmentId')}"
            th:text="${error}">Validation error</p>
       </div>
