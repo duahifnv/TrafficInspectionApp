@@ -10,5 +10,9 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
         format_sql: true
+    hibernate:
+      ddl-auto: none # Чтобы хибернейт не трогал структуру БД
+  liquibase:
+    enabled: true # Liquibase занимается структурой БД
 server:
   port: 8081
