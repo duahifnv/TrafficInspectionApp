@@ -30,7 +30,7 @@ public class SecurityConfig {
         http.securityMatcher("/**")
                 .authorizeHttpRequests(
                         authorize -> authorize.requestMatchers("/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/inspect/**").hasRole("EMPLOYEE")
+//                                .requestMatchers("/inspect/**").hasRole("EMPLOYEE")
                                 .requestMatchers("/me/**").authenticated()
                                 .anyRequest()
                                 .permitAll()

@@ -4,6 +4,7 @@ import dstu.inspection.dto.user.UserDto;
 import dstu.inspection.entity.security.Role;
 import dstu.inspection.entity.security.User;
 import dstu.inspection.repository.security.UserRepository;
+import dstu.inspection.validation.UserAlreadyExistAuthenticationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
