@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main" style="position: relative" th:with="license=${session.license}">
+    <div th:if="${license != null}" class="container nav_content">
+        <div class='label_container'>
+            <span class="h1">Мои свидетельства о регистрации ТС</span>
+            <a class="img_container" th:href="@{/me/certificates/pdf}">
+                <img src="/static/img/save-90.png" th:src='@{/img/save-90.png}' alt="Save"/>
+            </a>
+        </div>
+        <div class="container list" th:replace="~{components/my_certificates :: certificates}"></div>
+    </div>
+    <div th:if="${license == null}" class="container blocked">
+        <div class="container banner_info">
+            <p>Добавьте водительское удостоверение</p>
+            <a th:href="@{/me/license/new}">
+                <button class="default_button">Добавить</button>
+            </a>
+        </div>
+    </div>
+</main>
+<footer class="container footer" th:replace="~{components/footer :: footer}"></footer>
+</body>
+</html>

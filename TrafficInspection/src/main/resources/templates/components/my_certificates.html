@@ -23,25 +23,11 @@
                         Категория
                     </p>
                 </div>
-                <p class="item_title" th:text="'Владелец: ' + ${certificate.fullName}">Владелец</p>
                 <p class="item_description vin" th:text="'ВИН-номер: ' + ${certificate.vin}">VIN</p>
                 <p class="item_description date" th:text="'Дата регистрации: ' + ${certificate.dateOfRegistration}">
                     DATE_OF_REGISTRATION</p>
-                <p class="item_description" th:text="'Тип подразделения: ' + ${certificate.departmentType}">
-                    TYPE</p>
                 <p class="item_description" th:text="'Адрес подразделения: ' + ${certificate.departmentLocation}">
                     LOCATION</p>
-                <div class="container" style="flex-direction: row; gap: 0.5em">
-                    <form th:action="@{|/inspect/certificates/edit/${certificate.certificateId}|}" method="get"
-                          style="margin-bottom: 0.5em">
-                        <button type="submit" class="default_button" style="background-color: gray">
-                            Изменить свидетельство</button>
-                    </form>
-                    <form th:action="@{|/inspect/certificates/${certificate.certificateId}|}" method="post">
-                        <button type="submit" class="default_button" style="background-color: maroon;">
-                            Удалить свидетельство</button>
-                    </form>
-                </div>
             </div>
         </th:block>
     </div>
