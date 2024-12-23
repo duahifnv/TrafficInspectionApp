@@ -314,6 +314,18 @@ FROM employee e
 alter table employees_info
     owner to postgres;
 
+create view certificate_info as
+select certificate_id, registration_code, date_of_registration, full_name, vin,
+       category_code, department_type, department_location
+from vehicle_registration_certificate as vrc
+join vehicle_passport vp on vrc.passport_id = vp.passport_id
+join driver d on vrc.driver_id = d.driver_id
+join vehicle_categories dc on vrc.category_id = dc.category_id
+join department dp on vrc.department_id = dp.department_id;
+
+alter table certificate_info
+    owner to postgres;
+
 create function vehicles_report(start_date date, end_date date)
     returns TABLE(registration_code character varying, vin character varying, model_name character varying, brand_name character varying, manufacture_year integer, body_color character varying, category_code character varying, full_name character varying, date_of_registration date)
     language sql
