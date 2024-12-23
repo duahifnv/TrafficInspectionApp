@@ -21,6 +21,7 @@ public class InfoService {
     private final ViolationsInfoRepository violationsInfoRepository;
     private final LicensesInfoRepository licensesInfoRepository;
     private final VehiclesInfoRepository vehiclesInfoRepository;
+    private final CertificatesInfoRepository certificatesInfoRepository;
     public List<CategoriesInfo> findAllCategories() {
         return categoriesInfoRepository.findAll();
     }
@@ -59,5 +60,11 @@ public class InfoService {
     }
     public List<VehiclesInfo> findVehicleInfoByUsername(String username) {
         return vehiclesInfoRepository.findByUsername(username);
+    }
+    public List<CertificateInfo> findAllCertificates() {
+        return certificatesInfoRepository.findAll(Sort.by(Sort.Direction.ASC, "certificateId"));
+    }
+    public CertificateInfo findCertificateInfoByRegistrationCode(String registrationCode) {
+        return certificatesInfoRepository.findCertificateInfoByRegistrationCode(registrationCode);
     }
 }

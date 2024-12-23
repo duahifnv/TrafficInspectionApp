@@ -1,4 +1,4 @@
-package dstu.inspection.service;
+package dstu.inspection.validation;
 
 import org.springframework.security.core.AuthenticationException;
 
