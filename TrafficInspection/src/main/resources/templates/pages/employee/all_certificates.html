@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <title>TrafficApp</title>
+  <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+  <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main" style="position: relative">
+  <div class="container nav_content">
+    <div class='label_container' style="flex-direction: row; gap: 1.3em">
+      <span class="h1">Свидетельства о регистрации</span>
+      <a th:href="@{/inspect/certificates/new}">
+        <button type="submit" class="default_button">Новое свидетельство</button>
+      </a>
+      <a class="img_container" th:href="@{/inspect/certificates/pdf}">
+        <img src="/static/img/save-90.png" th:src='@{/img/save-90.png}' alt="Save"/>
+      </a>
+    </div>
+    <div class="container list" th:replace="~{components/all_certificates :: certificates}"></div>
+  </div>
+</main>
+<footer class="container footer" th:replace="~{components/footer :: footer}"></footer>
+</body>
+</html>

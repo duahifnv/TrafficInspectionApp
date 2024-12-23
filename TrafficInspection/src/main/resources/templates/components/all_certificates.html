@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="container list" th:fragment="certificates">
+    <div th:if="${certificates.isEmpty()}" style="display: flex; justify-content: center">
+        <p class="h1" style="color: gray">Свидетельств нет</p>
+    </div>
+    <div th:unless="${certificates.isEmpty()}">
+        <th:block th:each="certificate: ${certificates}">
+            <div class="container item">
+                <div class="container" style="flex-direction: row; gap: 0.5em">
+                    <p class="wrapper item_title" style="background-color: white; color: black"
+                       th:text="'№' + ${certificate.certificateId}">
+                        №
+                    </p>
+                    <p class="wrapper item_title" style="background-color: white"
+                       th:text="'Зарегистрирован: ' + ${certificate.dateOfRegistration}">
+                        Дата регистрации
+                    </p>
+                    <p class="wrapper item_title default_item"
+                       th:text="'Категория ' + ${certificate.categoryCode}"
+                       style="background-color: #8b8b8b; color: white">
+                        Категория
+                    </p>
+                </div>
+                <p class="wrapper item_title" style="background-color: #9f9f9f; color: white"
+                   th:text="${certificate.fullName}">
+                    ФИО
+                </p>
+                <div class="container" style="flex-direction: row; gap: 0.5em">
+                    <p class="wrapper item_title default_item"
+                       th:text="${certificate.registrationCode}">
+                        Регистрационный номер
+                    </p>
+                    <p class="wrapper item_title default_item"
+                       th:text="'VIN ' + ${certificate.vin}"
+                       style="background-color: black; color: white">
+                        VIN
+                    </p>
+                </div>
+                <div class="container" style="flex-direction: row; gap: 0.5em">
+                    <p class="wrapper item_title default_item"
+                       th:text="${certificate.departmentType}"
+                       style="background-color: #01002e; color: white">
+                        Тип подразделения
+                    </p>
+                    <p class="wrapper item_title default_item"
+                       th:text="${certificate.departmentLocation}" style="background-color: #1f3d6c; color: white">
+                        Адрес подразделения
+                    </p>
+                </div>
+                <div class="container" style="flex-direction: row; gap: 0.5em">
+                    <form th:action="@{|/inspect/certificates/edit/${certificate.certificateId}|}" method="get"
+                          style="margin-bottom: 0.5em">
+                        <button type="submit" class="default_button" style="background-color: gray">
+                            Изменить свидетельство</button>
+                    </form>
+                    <form th:action="@{|/inspect/certificates/${certificate.certificateId}|}" method="post">
+                        <button type="submit" class="default_button" style="background-color: maroon;">
+                            Удалить свидетельство</button>
+                    </form>
+                </div>
+            </div>
+        </th:block>
+    </div>
+</div>
+</body>
+</html>

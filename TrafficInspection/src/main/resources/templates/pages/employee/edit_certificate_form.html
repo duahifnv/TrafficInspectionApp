@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>TrafficApp</title>
+    <link href="../../../static/css/components.css" th:href="@{/css/components.css}" rel="stylesheet">
+    <link href="../../../static/css/layout.css" th:href="@{/css/layout.css}" rel="stylesheet">
+</head>
+<body>
+<header th:replace="~{components/header :: header}"></header>
+<main class="container main" style="position: relative">
+    <div class="container nav_content">
+        <div class="container back_container">
+            <a class="img_container" th:href="@{/inspect/certificates}">
+                <img src="/static/img/back_button.png" th:src='@{/img/back_button.png}' alt="Back"/>
+            </a>
+        </div>
+        <div class='label_container'>
+            <span class="h1">Изменить свидетельство о регистрации ТС</span>
+        </div>
+        <form class="container form_container" style="width: 50%"
+              th:action="@{|/inspect/certificates/edit/${certificateDto.certificateId}|}" th:method="POST"
+              th:object="${certificateDto}">
+            <div class="container info_container" th:if="${#fields.hasGlobalErrors()}">
+                <div class="container message_container error_message" th:each="error: ${#fields.globalErrors}">
+                    <span th:text="${error}">Общая ошибка</span>
+                </div>
+            </div>
+            <div class="container input_container">
+                <label>Код свидетельства</label>
+                <div class="input_form">
+                    <input type="number" th:field="*{certificateId}"
+                           th:value="${certificateDto.certificateId}" readonly>
+                </div>
+                <p th:each="error: ${#fields.errors('certificateId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Регистрационный номер</label>
+                <div class="input_form">
+                    <input type="text" th:field="*{registrationCode}"
+                           th:value="${certificateDto.registrationCode}" placeholder="A 000 AA RUS 061"
+                    readonly>
+                </div>
+                <p th:each="error: ${#fields.errors('registrationCode')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Номер ПТС</label>
+                <div class="input_form">
+                    <input type="number" th:field="*{passportId}"
+                           th:value="${certificateDto.passportId}" placeholder="0"
+                    readonly>
+                </div>
+                <p th:each="error: ${#fields.errors('passportId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Водитель</label>
+                <select th:field="*{driverId}" class="select">
+                    <option th:each="driver : ${driverList}"
+                            th:value="${driver.driverId}"
+                            th:text="${driver.fullName} + ' | '
+                             + ${driver.registrationAddress}"
+                            th:selected="${certificateDto.driverId}"></option>
+                </select>
+                <p th:each="error: ${#fields.errors('driverId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Категория ТС</label>
+                <select th:field="*{categoryId}" class="select">
+                    <option th:each="category : ${categoryList}"
+                            th:value="${category.categoryId}"
+                            th:text="${category.categoryCode}"
+                            th:selected="${certificateDto.categoryId}"></option>
+                </select>
+                <p th:each="error: ${#fields.errors('categoryId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Подразделение</label>
+                <select th:field="*{departmentId}" class="select">
+                    <option th:each="department : ${departmentList}"
+                            th:value="${department.departmentId}"
+                            th:text="${department.departmentType} + ' | '
+                            + ${department.departmentLocation}"
+                            th:selected="${certificateDto.departmentId}"></option>
+                </select>
+                <p th:each="error: ${#fields.errors('departmentId')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <div class="container input_container">
+                <label>Дата регистрации</label>
+                <input type="date" th:field="*{dateOfRegistration}"
+                th:value="${certificateDto.dateOfRegistration}"/>
+                <p th:each="error: ${#fields.errors('dateOfRegistration')}"
+                   th:text="${error}">Validation error</p>
+            </div>
+            <button class="default_button" type="submit">Изменить</button>
+        </form>
+    </div>
+</main>
+<footer class="container footer" th:replace="~{components/footer :: footer}"></footer>
+</body>
+</html>

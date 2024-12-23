@@ -23,24 +23,28 @@
                     <p class="item_description"
                        style="font-weight: 600; color: #3e8e41"
                        th:text="'Погашение: ' + ${violation.dateOfPayment}"></p>
-                    <form th:action="@{|/inspect/violations/edit/${violation.violationId}|}" method="get"
-                    style="margin-bottom: 0.5em">
-                        <button type="submit" class="default_button"  style="background-color: gray">Изменить нарушение</button>
-                    </form>
-                    <form th:action="@{|/inspect/violations/${violation.violationId}|}" method="post">
-                        <button type="submit" class="default_button" style="background-color: maroon;">Удалить нарушение</button>
-                    </form>
+                    <div class="container" style="flex-direction: row; gap: 0.5em">
+                        <form th:action="@{|/inspect/violations/edit/${violation.violationId}|}" method="get"
+                              style="margin-bottom: 0.5em">
+                            <button type="submit" class="default_button"  style="background-color: gray">Изменить нарушение</button>
+                        </form>
+                        <form th:action="@{|/inspect/violations/${violation.violationId}|}" method="post">
+                            <button type="submit" class="default_button" style="background-color: maroon;">Удалить нарушение</button>
+                        </form>
+                    </div>
                 </div>
                 <div th:if="${violation.dateOfPayment == null}">
                     <p class="item_description"
                        style="font-weight: 600; color: maroon">Не погашено</p>
-                    <form th:action="@{|/inspect/violations/edit/${violation.violationId}|}" method="get"
-                          style="margin-bottom: 0.5em">
-                        <button type="submit" class="default_button" style="background-color: gray">Изменить нарушение</button>
-                    </form>
-                    <form th:action="@{|/inspect/violations/${violation.violationId}|}" method="post">
-                        <button type="submit" class="default_button" style="background-color: maroon;">Удалить нарушение</button>
-                    </form>
+                    <div class="container" style="flex-direction: row; gap: 0.5em">
+                        <form th:action="@{|/inspect/violations/edit/${violation.violationId}|}" method="get"
+                              style="margin-bottom: 0.5em">
+                            <button type="submit" class="default_button" style="background-color: gray">Изменить нарушение</button>
+                        </form>
+                        <form th:action="@{|/inspect/violations/${violation.violationId}|}" method="post">
+                            <button type="submit" class="default_button" style="background-color: maroon;">Удалить нарушение</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </th:block>
