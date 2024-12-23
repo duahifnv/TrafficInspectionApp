@@ -1,12 +1,12 @@
 package dstu.inspection.config;
 
-import dstu.inspection.service.InfoService;
+import dstu.inspection.service.LicenseService;
+import dstu.inspection.service.VehicleService;
 import dstu.inspection.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
-import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -14,7 +14,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.security.web.savedrequest.HttpSessionRequestCache;
 import org.springframework.security.web.savedrequest.RequestCache;
 
@@ -24,7 +23,7 @@ import org.springframework.security.web.savedrequest.RequestCache;
 @RequiredArgsConstructor
 public class SecurityConfig {
     private final UserService userService;
-    private final InfoService infoService;
+    private final LicenseService licenseService;
     @Bean
     public SecurityFilterChain adminFilterChain(HttpSecurity http) throws Exception {
         http.securityMatcher("/**")
@@ -68,6 +67,6 @@ public class SecurityConfig {
     }
     @Bean
     public AuthenticationSuccessHandler successHandler() {
-        return new AuthSuccessHandler(infoService);
+        return new AuthSuccessHandler(licenseService);
     }
 }

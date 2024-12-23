@@ -3,14 +3,14 @@ package dstu.inspection.controller.inspect;
 import dstu.inspection.dto.inspect.LicenseDto;
 import dstu.inspection.entity.License;
 import dstu.inspection.mapper.LicenseMapper;
+import dstu.inspection.service.DepartmentService;
 import dstu.inspection.service.DriverService;
-import dstu.inspection.service.InfoService;
+import dstu.inspection.service.VehicleService;
 import dstu.inspection.service.LicenseService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,12 +28,12 @@ import java.util.Date;
 @RequiredArgsConstructor
 public class LicenseController {
     private final LicenseService licenseService;
-    private final InfoService infoService;
+    private final DepartmentService departmentService;
     private final DriverService driverService;
     private final LicenseMapper licenseMapper;
     @GetMapping("/licenses")
     public String licensesPage(Model model) {
-        model.addAttribute("licenses", infoService.findAllLicenseInfos());
+        model.addAttribute("licenses", licenseService.findAllLicenseInfos());
         return "pages/employee/all_licenses";
     }
     @GetMapping("/licenses/new")
@@ -99,6 +99,6 @@ public class LicenseController {
     }
     private void addStaticAttributes(Model model) {
         model.addAttribute("driverList", driverService.findAll());
-        model.addAttribute("departmentList", infoService.findAllDepartments());
+        model.addAttribute("departmentList", departmentService.findAll());
     }
 }

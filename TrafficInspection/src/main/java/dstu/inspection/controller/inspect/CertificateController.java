@@ -23,15 +23,15 @@ import java.util.List;
 @RequestMapping("/inspect/certificates")
 @RequiredArgsConstructor
 public class CertificateController {
-    private final InfoService infoService;
     private final CategoryService categoryService;
     private final CertificateService certificateService;
     private final DriverService driverService;
     private final CertificateMapper certificateMapper;
     private final ViolationService violationService;
+    private final DepartmentService departmentService;
     @GetMapping
     public String certificatesPage(Model model) {
-        model.addAttribute("certificates", infoService.findAllCertificates());
+        model.addAttribute("certificates", certificateService.findAllCertificatesInfo());
         return "pages/employee/all_certificates";
     }
     @GetMapping("/new")
@@ -87,7 +87,8 @@ public class CertificateController {
         if (certificate == null) {
             return "redirect:/inspect/certificates";
         }
-        List<ViolationsInfo> violations = infoService.findViolationsByRegistrationCode(certificate.getRegistrationCode());
+        List<ViolationsInfo> violations =
+                violationService.findViolationsInfoByRegistrationCode(certificate.getRegistrationCode());
         certificateService.deleteById(id);
         return "redirect:/inspect/certificates";
     }
@@ -103,6 +104,6 @@ public class CertificateController {
     private void addStaticAttributes(Model model) {
         model.addAttribute("driverList", driverService.findAll());
         model.addAttribute("categoryList", categoryService.findAll());
-        model.addAttribute("departmentList", infoService.findAllDepartments());
+        model.addAttribute("departmentList", departmentService.findAll());
     }
 }

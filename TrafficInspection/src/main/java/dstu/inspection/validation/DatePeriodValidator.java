@@ -1,12 +1,10 @@
 package dstu.inspection.validation;
 
-import dstu.inspection.service.InfoService;
+import dstu.inspection.service.VehicleService;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.validation.FieldError;
 
 import java.lang.reflect.Field;
 import java.text.DateFormat;
@@ -19,7 +17,7 @@ public class DatePeriodValidator implements ConstraintValidator<DatePeriod, Obje
     // Названия полей, которые указываются в теле аннотации
     private String startDateFieldName;
     private String endDateFieldName;
-    private final InfoService infoService;
+    private final VehicleService infoService;
     @Override
     public void initialize(DatePeriod constraintAnnotation) {
         this.startDateFieldName = constraintAnnotation.startDate();

@@ -1,7 +1,8 @@
 package dstu.inspection.config;
 
 import dstu.inspection.entity.info.LicensesInfo;
-import dstu.inspection.service.InfoService;
+import dstu.inspection.service.LicenseService;
+import dstu.inspection.service.VehicleService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
@@ -25,7 +26,7 @@ import java.util.Map;
 @Configuration
 @RequiredArgsConstructor
 public class AuthSuccessHandler implements AuthenticationSuccessHandler {
-    private final InfoService infoService;
+    private final LicenseService licenseService;
     protected Log logger = LogFactory.getLog(this.getClass());
     private final RedirectStrategy redirectStrategy = new DefaultRedirectStrategy();
     @Override
@@ -76,7 +77,7 @@ public class AuthSuccessHandler implements AuthenticationSuccessHandler {
         session.removeAttribute(WebAttributes.AUTHENTICATION_EXCEPTION);
     }
     private void addLicenseInfo(HttpServletRequest request, Authentication authentication) {
-        LicensesInfo userLicense = infoService.findLicenseInfoByUsername(authentication.getName());
+        LicensesInfo userLicense = licenseService.findLicenseInfoByUsername(authentication.getName());
         if (userLicense != null) {
             HttpSession session = request.getSession(false);
             session.setAttribute("license", userLicense);

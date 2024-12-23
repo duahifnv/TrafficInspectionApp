@@ -4,11 +4,8 @@ import com.itextpdf.text.DocumentException;
 import dstu.inspection.entity.Department;
 import dstu.inspection.entity.Employee;
 import dstu.inspection.entity.info.*;
-import dstu.inspection.service.DepartmentService;
-import dstu.inspection.service.EmployeeService;
-import dstu.inspection.service.InfoService;
+import dstu.inspection.service.*;
 import dstu.inspection.utils.PdfBuilder;
-import jakarta.annotation.security.PermitAll;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -30,9 +27,13 @@ import java.util.List;
 public class PdfController {
     private static final String EMPLOYEE_MODE_NAME = "inspect";
     private static final String USER_MODE_NAME = "me";
-    private final InfoService infoService;
+    private final FineService fineService;
+    private final CategoryService categoryService;
     private final EmployeeService employeeService;
     private final DepartmentService departmentService;
+    private final ViolationService violationService;
+    private final VehicleService vehicleService;
+    private final LicenseService licenseService;
     @Value("classpath:static/pdf/pdf_cached.pdf")
     private Resource pdfResource;
     @Value("classpath:static/times_new_roman.ttf")
@@ -80,7 +81,7 @@ public class PdfController {
         String[] headers = new String[]{"Категории ТС"};
         String[] tableHeaders = new String[]{"Обозначение категории",
                 "Разрешенное ТС", "Минимальный возраст"};
-        List<CategoriesInfo> categoriesInfo = infoService.findAllCategories();
+        List<CategoriesInfo> categoriesInfo = categoryService.findAllCategoriesInfo();
         String[][] tableData = new String[categoriesInfo.size()][tableHeaders.length];
         for (int i = 0; i < categoriesInfo.size(); i++) {
             CategoriesInfo category = categoriesInfo.get(i);
@@ -110,7 +111,7 @@ public class PdfController {
         String[] headers = new String[]{"Сотрудники ГИБДД"};
         String[] tableHeaders = new String[]{"ФИО", "Должность",
                 "Тип подразделения", "Адрес подразделения"};
-        List<EmployeesInfo> employees = infoService.findAllEmployees();
+        List<EmployeesInfo> employees = employeeService.findAllEmployeesInfo();
         String[][] tableData = new String[employees.size()][tableHeaders.length];
         for (int i = 0; i < employees.size(); i++) {
             EmployeesInfo employee = employees.get(i);
@@ -127,7 +128,7 @@ public class PdfController {
         File file = pdfResource.getFile();
         String[] headers = new String[]{"Штрафы ГИБДД"};
         String[] tableHeaders = new String[]{"Описание штрафа", "Сумма штрафа"};
-        List<FinesInfo> finesInfo = infoService.findAllFines();
+        List<FinesInfo> finesInfo = fineService.findAllFinesInfo();
         String[][] tableData = new String[finesInfo.size()][tableHeaders.length];
         for (int i = 0; i < finesInfo.size(); i++) {
             FinesInfo fine = finesInfo.get(i);
@@ -147,13 +148,13 @@ public class PdfController {
             headers = new String[]{"Мои нарушения", getFullName(principal, accessMode)};
             tableHeaders = new String[]{"Дата нарушения", "Дата погашения",
                     "Описание штрафа", "Сумма штрафа"};
-            violationsInfo = infoService.findViolationsByUsername(principal.getName());
+            violationsInfo = violationService.findViolationsInfoByUsername(principal.getName());
         }
         else if (accessMode.equals(EMPLOYEE_MODE_NAME)) {
             headers = new String[]{"База нарушений", getFullName(principal, accessMode)};
             tableHeaders = new String[]{"Регистрационный номер ТС",
                     "Дата нарушения", "Дата погашения", "Описание штрафа", "Сумма штрафа"};
-            violationsInfo = infoService.findAllViolations();
+            violationsInfo = violationService.findAllViolationsInfo();
         }
         else throw new DocumentException();
         String[][] tableData = new String[violationsInfo.size()][tableHeaders.length];
@@ -185,13 +186,14 @@ public class PdfController {
             headers = new String[]{"Мои ТС", getFullName(principal, accessMode)};
             tableHeaders = new String[]{"Дата регистрации ТС", "Регистрационный номер ТС",
                     "VIN-номер ТС"};
-            vehiclesInfo = infoService.findVehicleInfoByUsername(principal.getName());
+
+            vehiclesInfo = vehicleService.findAllVehiclesInfoByUsername(principal.getName());
         }
         else if (accessMode.equals(EMPLOYEE_MODE_NAME)) {
             headers = new String[]{"Транспортные средства", getFullName(principal, accessMode)};
             tableHeaders = new String[]{"Дата регистрации ТС",
                     "Регистрационный номер ТС", "ФИО водителя", "VIN-номер ТС"};
-            vehiclesInfo = infoService.findAllVehicles();
+            vehiclesInfo = vehicleService.findAllVehiclesInfo();
         }
         else throw new DocumentException();
         String[][] tableData = new String[vehiclesInfo.size()][tableHeaders.length];
@@ -217,11 +219,11 @@ public class PdfController {
         List<LicensesInfo> licensesInfo;
         if (accessMode.equals(USER_MODE_NAME)) {
             headers = new String[]{"Мое удостоверение", getFullName(principal, accessMode)};
-            licensesInfo = List.of(infoService.findLicenseInfoByUsername(principal.getName()));
+            licensesInfo = List.of(licenseService.findLicenseInfoByUsername(principal.getName()));
         }
         else if (accessMode.equals(EMPLOYEE_MODE_NAME)) {
             headers = new String[]{"Водительские удостоверения", getFullName(principal, accessMode)};
-            licensesInfo = infoService.findAllLicenseInfos();
+            licensesInfo = licenseService.findAllLicenseInfos();
         }
         else throw new DocumentException();
         String[] tableHeaders = new String[]{"ФИО", "Дата рождения", "Место прописки",
@@ -246,7 +248,7 @@ public class PdfController {
             return employee.getFullName();
         }
         else {
-            LicensesInfo license = infoService.findLicenseInfoByUsername(username);
+            LicensesInfo license = licenseService.findLicenseInfoByUsername(username);
             return license.getFullName();
         }
     }
