@@ -42,4 +42,7 @@ public class CertificateService {
     public CertificateInfo findCertificateInfoByRegistrationCode(String registrationCode) {
         return certificatesInfoRepository.findCertificateInfoByRegistrationCode(registrationCode);
     }
+    public List<CertificateInfo> findAllCertificatesInfoByUsername(String username) {
+        return certificatesInfoRepository.findAllCertificatesInfoByUsername(username);
+    }
 }
