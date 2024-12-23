@@ -34,6 +34,7 @@ public class PdfController {
     private final ViolationService violationService;
     private final VehicleService vehicleService;
     private final LicenseService licenseService;
+    private final CertificateService certificateService;
     @Value("classpath:static/pdf/pdf_cached.pdf")
     private Resource pdfResource;
     @Value("classpath:static/times_new_roman.ttf")
@@ -67,6 +68,7 @@ public class PdfController {
             case "violations" -> putAllViolations(principal, accessMode);
             case "vehicles" -> putAllVehicles(principal, accessMode);
             case "licenses", "license" -> putAllLicenses(principal, accessMode);
+            case "certificates" -> putAllCertificates(principal, accessMode);
             default -> {
                 return ResponseEntity.badRequest().build();
             }
@@ -208,6 +210,36 @@ public class PdfController {
                 tableData[i][2] = vehicle.getFullName();
                 tableData[i][3] = vehicle.getVin();
             }
+        }
+        PdfBuilder pdfBuilder = new PdfBuilder();
+        pdfBuilder.createTablePdf(headers, tableHeaders, tableData, file, resource);
+    }
+    public void putAllCertificates(Principal principal, String accessMode)
+            throws IOException, DocumentException {
+        File file = pdfResource.getFile();
+        String[] headers;
+        List<CertificateInfo> certificateInfos;
+        if (accessMode.equals(USER_MODE_NAME)) {
+            headers = new String[]{"Мои свидетельства о регистрации ТС", getFullName(principal, accessMode)};
+            certificateInfos = certificateService.findAllCertificatesInfoByUsername(principal.getName());
+        }
+        else if (accessMode.equals(EMPLOYEE_MODE_NAME)) {
+            headers = new String[]{"Свидетельства о регистрации ТС", getFullName(principal, accessMode)};
+            certificateInfos = certificateService.findAllCertificatesInfo();
+        }
+        else throw new DocumentException();
+        String[] tableHeaders = new String[]{"Рег. номер", "Дата рег.", "ФИО",
+                "VIN-номер", "Кат.", "Тип подразделения", "Адрес подразделения"};
+        String[][] tableData = new String[certificateInfos.size()][tableHeaders.length];
+        for (int i = 0; i < certificateInfos.size(); i++) {
+            CertificateInfo certificateInfo = certificateInfos.get(i);
+            tableData[i][0] = certificateInfo.getRegistrationCode();
+            tableData[i][1] = convertToString(certificateInfo.getDateOfRegistration());
+            tableData[i][2] = certificateInfo.getFullName();
+            tableData[i][3] = certificateInfo.getVin();
+            tableData[i][4] = certificateInfo.getCategoryCode();
+            tableData[i][5] = certificateInfo.getDepartmentType();
+            tableData[i][6] = certificateInfo.getDepartmentLocation();
         }
         PdfBuilder pdfBuilder = new PdfBuilder();
         pdfBuilder.createTablePdf(headers, tableHeaders, tableData, file, resource);
