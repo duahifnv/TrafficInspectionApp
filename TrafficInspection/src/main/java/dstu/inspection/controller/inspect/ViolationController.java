@@ -3,29 +3,22 @@ package dstu.inspection.controller.inspect;
 import dstu.inspection.dto.ViolationDto;
 import dstu.inspection.entity.Violation;
 import dstu.inspection.entity.info.VehiclesInfo;
-import dstu.inspection.entity.info.ViolationsInfo;
 import dstu.inspection.mapper.ViolationMapper;
 import dstu.inspection.service.InfoService;
 import dstu.inspection.service.ViolationService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 
 @Controller
 @RequestMapping("/inspect")
 @RequiredArgsConstructor
-public class InspectViolationController {
+public class ViolationController {
     private final ViolationService violationService;
     private final ViolationMapper violationMapper;
     private final InfoService infoService;
@@ -54,8 +47,7 @@ public class InspectViolationController {
         VehiclesInfo vehicle = infoService.findVehicleInfoByRegistrationCode(registrationCode);
         if (vehicle == null) {
             String errorMessage = "Не найдено ТС с номером: " + registrationCode;
-            FieldError error = new FieldError("violationDto",
-                    "registrationCode", errorMessage);
+            ObjectError error = new ObjectError("violationDto",  errorMessage);
             result.addError(error);
             model.addAttribute("fineList", infoService.findAllFines());
             return "pages/employee/new_violation_form";

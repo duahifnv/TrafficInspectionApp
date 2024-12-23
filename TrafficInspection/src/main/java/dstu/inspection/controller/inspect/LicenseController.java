@@ -1,11 +1,8 @@
 package dstu.inspection.controller.inspect;
 
-import dstu.inspection.dto.ViolationDto;
 import dstu.inspection.dto.inspect.LicenseDto;
 import dstu.inspection.entity.License;
-import dstu.inspection.entity.Violation;
 import dstu.inspection.mapper.LicenseMapper;
-import dstu.inspection.service.DepartmentService;
 import dstu.inspection.service.DriverService;
 import dstu.inspection.service.InfoService;
 import dstu.inspection.service.LicenseService;
@@ -14,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +26,7 @@ import java.util.Date;
 @Controller
 @RequestMapping("/inspect")
 @RequiredArgsConstructor
-public class InspectLicenseController {
+public class LicenseController {
     private final LicenseService licenseService;
     private final InfoService infoService;
     private final DriverService driverService;
@@ -53,8 +51,7 @@ public class InspectLicenseController {
         License licenseByDriverId = licenseService.findByDriverId(licenseDto.getDriverId());
         if (licenseByDriverId != null) {
             String errorMessage = "Этому водителю уже выдано удостоверение";
-            FieldError error = new FieldError("licenseDto",
-                    "driverId", errorMessage);
+            ObjectError error = new ObjectError("licenseDto", errorMessage);
             result.addError(error);
             addStaticAttributes(model);
             return "pages/employee/new_license_form";
