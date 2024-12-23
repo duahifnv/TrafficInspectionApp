@@ -3,6 +3,7 @@ package dstu.inspection.controller.user;
 import dstu.inspection.dto.user.LicenseDto;
 import dstu.inspection.entity.License;
 import dstu.inspection.entity.Violation;
+import dstu.inspection.entity.info.CertificateInfo;
 import dstu.inspection.entity.info.VehiclesInfo;
 import dstu.inspection.entity.info.ViolationsInfo;
 import dstu.inspection.entity.security.User;
@@ -31,6 +32,7 @@ public class UserController {
     private final UserService userService;
     private final ViolationService violationService;
     private final VehicleService vehicleService;
+    private final CertificateService certificateService;
     @GetMapping
     public String profilePage() {
         return "redirect:/me/license";
@@ -105,5 +107,12 @@ public class UserController {
         violation.setDateOfPayment(Date.from(Instant.now()));
         violationService.save(violation);
         return "redirect:/me/violations";
+    }
+    @GetMapping("/certificates")
+    public String certificatesTab(Model model, Principal principal) {
+        List<CertificateInfo> certificateInfos =
+                certificateService.findAllCertificatesInfoByUsername(principal.getName());
+        model.addAttribute("certificates", certificateInfos);
+        return "pages/user/my_certificates";
     }
 }
