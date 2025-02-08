@@ -68,12 +68,14 @@ git clone https://github.com/duahifnv/TrafficInspectionApp.git
 ```
 2. Переместитесь в папку с проектом
 ```powershell
-cd TrafficInspection
+cd TrafficInspectionApp/TrafficInspection
 ```
 3. Запустите необходимые контейнеры (База данных и приложение)
+> [!IMPORTANT]
+> Перед запуском проверьте, что Docker Desktop запущен
 ```powershell
 docker-compose up
 ```
-> [!IMPORTANT]
+> [!NOTE]
 > Используйте файл `docker-compose.yml`, чтобы изменить конфигурацию контейнеров
 4. Перейдите по адресу `<hostname>:8081`, чтобы попасть на главную страницу приложения (вместо hostname адрес вашего локального хоста - `localhost` по умолчанию)
