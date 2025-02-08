@@ -1,0 +1,1 @@
+create database traffic_inspection_db;
